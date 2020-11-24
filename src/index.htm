@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+
+<div id='Title'>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Count Trackula</title>
+  <link rel="stylesheet" type="text/css" href="bundle.css">
+
+  <link href="/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
+  <script type="text/typescript" src="/src/js/index.ts"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    </style>
+</div>
+
+
+
+</head>
+
+<body>
+
+<!-- Load an icon library -->
+<script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
+
+<div class="navbar">
+  <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
+  <a href="index.htm"><i class="fas fa-cog"></i> Settings</a>
+</div>
+
+
+  <div class="row">
+
+  <div id='homeButton' >
+    <img src="Raspberry_Pi_Logo.svg" width="50px">
+  </div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    </style>
+
+  <h1>Count Trackula</h1>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="side">
+      <button id="getAllButton"><b>Show all triggers</b></button>
+      <button id="clearGetAllListButton">Clear List</button>
+      <div id="getAllContent">
+        <ul id="carsContent">
+      </div>
+    </div>
+
+    <div class="side">
+      <input id="getInput" placeholder="Enter count ID">
+      <br>
+      <button id="getButton"><b>Show specified trigger</b></button>
+      <div id="getContent">
+      </div>
+    </div>
+
+    <!-- 
+    <br> <br>
+
+    <div class="side">
+      <input id="addVendorInput" placeholder="Enter trigger TimeStamp">
+      <br>
+      <input id="addModelInput" placeholder="Enter trigger CurrentCount">
+      <br>
+      <button id="addButton"><b>Add trigger</b></button>
+      <div id="postContent">
+      </div>
+    </div>
+
+    <br> <br>
+
+    <div class="side">
+      <input id="updateIdInput" placeholder="Enter trigger ID">
+      <br>
+      <input id="updateVendorInput" placeholder="Enter trigger TimeStamp">
+      <br>
+      <input id="updateModelInput" placeholder="Enter trigger CurrentCount">
+      <br>
+      <button id="updateButton"><b>Update trigger</b></button>
+      <div id="putContent">
+      </div>
+    </div>
+
+    <br> <br>
+
+    <div class="side">
+      <input id="deleteInput" placeholder="Enter trigger ID">
+      <br>
+      <button id="deleteButton"><b>Delete trigger</b></button>
+      <div id="deleteContent">
+      </div>
+    </div> -->
+
+  </div>
+
+  <script src="bundle.js"></script>
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+
+<div class='static'>
+    <div id="container" style="width:700px; height:400px; margin: auto;"></div>
+  </div>
+
+
+
+
+</body>
+
+</html>

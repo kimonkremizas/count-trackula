@@ -12,8 +12,10 @@ while True:
     now = datetime.now()
     strftime = now.strftime('%Y-%m-%d %H:%M:%S.%f')
     strftimeString = str(strftime[:-4])
+    value = random.randint(0,1)
+    isEntranceString = str(value)
         # THis will add the datetimenow and the IsEntrance bit/bool value
-    data =strftimeString+",0"
+    data =strftimeString+","+isEntranceString
     s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
     print(data)
     time.sleep(2)

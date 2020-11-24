@@ -2,79 +2,111 @@ import axios, {​​ AxiosResponse, AxiosError}​​ from "../../node_modules/
 import {IDoorTracking} from "./IDoorTracking";
 
 
-let timeout: any;
+// let timeout: any;
 
 let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
-let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
-let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
-let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
+// let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
+// let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
+// let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
+// let getLastButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getLastButton")
 // let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addButton")
 // let updateButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("updateButton")
 // let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteButton")
 
-let carsElement: HTMLUListElement = <HTMLUListElement> document.getElementById("carsContent");
-let getContent: HTMLDivElement = <HTMLDivElement> document.getElementById("getContent");
+// let carsElement: HTMLUListElement = <HTMLUListElement> document.getElementById("carsContent");
+// let getContent: HTMLDivElement = <HTMLDivElement> document.getElementById("getContent");
+let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("Occupancy");
 // let postContent: HTMLDivElement = <HTMLDivElement>document.getElementById("postContent");
 // let putContent: HTMLDivElement = <HTMLDivElement>document.getElementById("putContent");
 // let deleteContent: HTMLDivElement = <HTMLDivElement>document.getElementById("deleteContent");
 
-getAllButton.addEventListener("click", GetAllDoorTrackings);
-clearGetAllListButton.addEventListener("click",ClearGetAllList);
-getButton.addEventListener("click",GetDoorTracking);
+// getAllButton.addEventListener("click", GetAllDoorTrackings);
+// clearGetAllListButton.addEventListener("click",ClearGetAllList);
+// getButton.addEventListener("click",GetDoorTracking);
+// getLastButton.addEventListener("click",GetCurrentOccupancy);
 // addButton.addEventListener("click", AddCar);
 // updateButton.addEventListener("click", UpdateCar);
 // deleteButton.addEventListener("click", DeleteCar);
 
-let DataArray: IDoorTracking[] = [];
+// let DataArray: IDoorTracking[] = [];
 
 
-function GetAllDoorTrackings(){
-    axios.get<IDoorTracking[]>(doorTrackingWebUrl)
+// function GetAllDoorTrackings(){
+//     axios.get<IDoorTracking[]>(doorTrackingWebUrl)
+//     .then(function(AxiosResponse):void{
+//         console.log("AxiosResponse: ",AxiosResponse);
+//         console.log("Status Code: ",AxiosResponse.status);
+//         const { data } = AxiosResponse;
+//         ClearGetAllList();
+//         AxiosResponse.data.forEach((doorTracking: IDoorTracking) => {
+//          let newNode:HTMLLIElement = AddLiElement('ID: '+doorTracking.id+', DateTime: '+doorTracking.dateTime+', Occupancy: '+doorTracking.occupancy+', IsEntrance: '+doorTracking.isEntrance);
+//          carsElement.appendChild(newNode);
+        
+//         });
+//     })
+//     .catch(function(error:AxiosError):void{
+//         console.log(error);
+//         let errorMessage = "Error Code: "+error.response.status;
+//         console.log(errorMessage);
+//     })
+// }
+
+
+// function GetCurrentOccupancy(){
+//     axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
+//     .then(function(AxiosResponse):void{
+//         console.log("AxiosResponse: ",AxiosResponse);
+//         console.log("Status Code: ",AxiosResponse.status);
+//         getLastContent.innerHTML = AxiosResponse.data.toString();
+//         })
+//     .catch(function(error:AxiosError):void{
+//         console.log(error);
+//         let errorMessage = "Error Code: "+error.response.status;
+//         console.log(errorMessage);
+//     })
+// }
+
+
+
+setInterval(function GetCurrentOccupancy(){
+    axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
     .then(function(AxiosResponse):void{
         console.log("AxiosResponse: ",AxiosResponse);
         console.log("Status Code: ",AxiosResponse.status);
-        const { data } = AxiosResponse;
-        ClearGetAllList();
-        AxiosResponse.data.forEach((doorTracking: IDoorTracking) => {
-         let newNode:HTMLLIElement = AddLiElement('ID: '+doorTracking.id+', DateTime: '+doorTracking.dateTime+', Occupancy: '+doorTracking.occupancy+', IsEntrance: '+doorTracking.isEntrance);
-         carsElement.appendChild(newNode);
-        
-        });
-    })
+        getLastContent.innerHTML = AxiosResponse.data.toString();
+        })
     .catch(function(error:AxiosError):void{
         console.log(error);
         let errorMessage = "Error Code: "+error.response.status;
         console.log(errorMessage);
     })
-}
+}, 2000);//run this thang every 2 seconds
+
+// function GetDoorTracking():void{
+//     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");
+//     let getInputValue : number = +getInput.value;
+//     axios.get(doorTrackingWebUrl + "/" + getInputValue)
+//     .then(function(response: AxiosResponse<IDoorTracking>):void{
+//         console.log(response);
+//         console.log("Statuscode is :" + response.status);
+//         let doorTracking:IDoorTracking = response.data;
+//         console.log(doorTracking);
+//         if (response.status!=204){
+//             getContent.innerHTML = "Current Occupancy: " + doorTracking.occupancy;
+//         }
+//         else {
+//             getContent.innerHTML = "No trigger found with this ID. Try again!";
+//         }
+
+//             // Clear getContent after 3 seconds
+//             //HideContent(getContent);
 
 
-
-function GetDoorTracking():void{
-    let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");
-    let getInputValue : number = +getInput.value;
-    axios.get(doorTrackingWebUrl + "/" + getInputValue)
-    .then(function(response: AxiosResponse<IDoorTracking>):void{
-        console.log(response);
-        console.log("Statuscode is :" + response.status);
-        let doorTracking:IDoorTracking = response.data;
-        console.log(doorTracking);
-        if (response.status!=204){
-            getContent.innerHTML = "Current Occupancy: " + doorTracking.occupancy;
-        }
-        else {
-            getContent.innerHTML = "No trigger found with this ID. Try again!";
-        }
-
-            // Clear getContent after 3 seconds
-            //HideContent(getContent);
-
-
-    })
-    .catch(function(error:AxiosError):void{
-        console.log(error);
-    })
-}
+//     })
+//     .catch(function(error:AxiosError):void{
+//         console.log(error);
+//     })
+// }
 
 
 
@@ -170,49 +202,49 @@ function GetDoorTracking():void{
 // }
 
 
-function AddLiElement(text:string):HTMLLIElement {
-    let newLi:HTMLLIElement = document.createElement('li');
-    let newTextNode:Text = document.createTextNode(text)
-    newLi.appendChild(newTextNode);
-    return newLi;
-}
+// function AddLiElement(text:string):HTMLLIElement {
+//     let newLi:HTMLLIElement = document.createElement('li');
+//     let newTextNode:Text = document.createTextNode(text)
+//     newLi.appendChild(newTextNode);
+//     return newLi;
+// }
 
-function ClearGetAllList():void{
-    while (carsElement.firstChild){
-        carsElement.removeChild(carsElement.lastChild)
-    }
-}
+// function ClearGetAllList():void{
+//     while (carsElement.firstChild){
+//         carsElement.removeChild(carsElement.lastChild)
+//     }
+// }
 
-// Clear Content after 3 seconds
-function HideContent(contentName:HTMLDivElement){
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-        contentName.innerHTML = "";
-        }, 3000);
-}
-
-
+// // Clear Content after 3 seconds
+// function HideContent(contentName:HTMLDivElement){
+//     clearTimeout(timeout);
+//     timeout = setTimeout(function () {
+//         contentName.innerHTML = "";
+//         }, 3000);
+// }
 
 
 
-console.log(DataArray);
+
+
+// console.log(DataArray);
 
 
 
-function ConvertData(){
+// function ConvertData(){
 
-var regexString = /(\d+)\-(\d+)\-(\d+)\D\:(\d+)\:(\d+)\:(\d+)\,(\d+)/;
-var originalData = '2016-01-17T:08:44:29,99';
-let year:number= +originalData.replace(regexString, '$1');
-let month:number= +originalData.replace(regexString, '$2');
-let day:number= +originalData.replace(regexString, '$3');
-let hour:number= +originalData.replace(regexString, '$4');
-let minute:number= +originalData.replace(regexString, '$5');
-let second:number= +originalData.replace(regexString, '$6');
-let customerCount:number= +originalData.replace(regexString, '$7');
+// var regexString = /(\d+)\-(\d+)\-(\d+)\D\:(\d+)\:(\d+)\:(\d+)\,(\d+)/;
+// var originalData = '2016-01-17T:08:44:29,99';
+// let year:number= +originalData.replace(regexString, '$1');
+// let month:number= +originalData.replace(regexString, '$2');
+// let day:number= +originalData.replace(regexString, '$3');
+// let hour:number= +originalData.replace(regexString, '$4');
+// let minute:number= +originalData.replace(regexString, '$5');
+// let second:number= +originalData.replace(regexString, '$6');
+// let customerCount:number= +originalData.replace(regexString, '$7');
 
-console.log(year+","+month+","+day+","+hour+","+minute+","+second+","+customerCount);
-}
+// console.log(year+","+month+","+day+","+hour+","+minute+","+second+","+customerCount);
+// }
 
 
 

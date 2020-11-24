@@ -23,48 +23,62 @@
 
 <body>
 
+
+
+
+
+  
+
+
+
+
+ <!-------------------------------------------------------------------------------------------->
+
+
+ <header>
+
 <!-- Load an icon library -->
 <script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
 
-<div class="navbar">
+
   <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
   <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
   <a href="index.htm"><i class="fas fa-cog"></i> Settings</a>
-</div>
+   <h1>Count Trackula</h1> 
 
 
-  <div class="row">
 
-  <div id='homeButton' >
+  <!-- <div id='homeButton'>
     <img src="Raspberry_Pi_Logo.svg" width="50px">
-  </div>
+  </div> -->
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
     </style>
 
-  <h1>Count Trackula</h1>
 
-  </div>
+</header>
+ <main>
+  <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
+   <p>Current Occupancy</p>
+   <p id="Occupancy">Loading...</p>
+ </main>
+ <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
 
-
-  <div class="row">
-
-    <div class="side">
-      <button id="getAllButton"><b>Show all triggers</b></button>
+<!--------------------------------------------------------------------------------------------->
+      <!-- <button id="getAllButton"><b>Show all triggers</b></button>
       <button id="clearGetAllListButton">Clear List</button>
       <div id="getAllContent">
         <ul id="carsContent">
-      </div>
-    </div>
+        </div>
 
-    <div class="side">
+
       <input id="getInput" placeholder="Enter count ID">
       <br>
       <button id="getButton"><b>Show specified trigger</b></button>
       <div id="getContent">
-      </div>
-    </div>
+      </div> -->
+
 
     <!-- 
     <br> <br>
@@ -103,12 +117,12 @@
       </div>
     </div> -->
 
-  </div>
+
 
   <script src="bundle.js"></script>
 
 
-
+<!-- 
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -121,7 +135,7 @@
 
 <div class='static'>
     <div id="container" style="width:700px; height:400px; margin: auto;"></div>
-  </div>
+  </div> -->
 
 
 

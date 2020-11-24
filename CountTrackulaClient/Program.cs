@@ -53,7 +53,15 @@ namespace CountTrackulaClient
                     }
                     else
                     {
-                        occupancyValue = lastOccupancyValueValue - 1;
+                        if (lastOccupancyValueValue == 0)
+                        {
+                            occupancyValue = 0;
+                        }
+                        else
+                        {
+                            occupancyValue = lastOccupancyValueValue - 1;
+                        }
+                        
                     }
 
                     DoorTracking newDoorTracking = new DoorTracking(dateTime, occupancyValue, isEntrance);

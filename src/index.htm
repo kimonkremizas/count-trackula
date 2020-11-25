@@ -43,7 +43,7 @@
 <div class="navbar">
   <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
   <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
-  <a href="index.htm"><i class="fas fa-cog"></i> Settings</a>
+  <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
 </div>
    <h1>Count Trackula</h1> 
 
@@ -63,6 +63,31 @@
   <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
    <p>Current Occupancy</p>
    <p id="Occupancy" class="OccupancyValue">Loading...</p>
+
+   <button class="collapsible">Settings</button>
+   <div class="grid-container">
+    <div class="grid-item">Maximum Customers:</div>
+    <div class="grid-item">
+      <input id="maximumCustomersInput" placeholder="Enter Maximum customers">
+    </div>
+    <div class="grid-item">Warning Range:</div>  
+    <div class="grid-item">
+      <input id="warningRangeInput" placeholder="Enter the warning range">
+    </div>
+    <div class="grid-item">Email:</div>
+    <div class="grid-item">
+      <input id="emailInput" placeholder="Enter email">
+    </div> 
+    <div class="grid-item"></div>
+    <div class="saveButton">
+      <button  id="saveSettingsButton">Accept</button>
+      </div>
+   </div>
+   
+
+
+
+
  </main>
  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
 

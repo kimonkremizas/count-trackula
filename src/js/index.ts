@@ -71,8 +71,8 @@ let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getEl
 setInterval(function GetCurrentOccupancy(){
     axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
     .then(function(AxiosResponse):void{
-        console.log("AxiosResponse: ",AxiosResponse);
-        console.log("Status Code: ",AxiosResponse.status);
+        //console.log("AxiosResponse: ",AxiosResponse);
+        //console.log("Status Code: ",AxiosResponse.status);
         getLastContent.innerHTML = AxiosResponse.data.toString();
         })
     .catch(function(error:AxiosError):void{
@@ -81,6 +81,39 @@ setInterval(function GetCurrentOccupancy(){
         console.log(errorMessage);
     })
 }, 2000);//run this thang every 2 seconds
+
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+function SaveSettings(){
+    let maximumCustomers: HTMLInputElement = <HTMLInputElement> document.getElementById("maximumCustomersInput");
+    let maximumCustomersValue : number = +maximumCustomers.value;
+    console.log(maximumCustomersValue)
+    let warningRange: HTMLInputElement = <HTMLInputElement> document.getElementById("warningRangeInput");
+    let warningRangeValue : number = +warningRange.value;
+    console.log(warningRangeValue)
+    let email: HTMLInputElement = <HTMLInputElement> document.getElementById("emailInput");
+    let emailValue : string = email.value;
+    console.log(emailValue)
+}
+
+
+let saveSettingsButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("saveSettingsButton")
+saveSettingsButton.addEventListener("click", SaveSettings);
+
 
 // function GetDoorTracking():void{
 //     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");

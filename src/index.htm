@@ -61,31 +61,50 @@
 </header>
  <main>
   <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
+  <div class="OccupancyArea">
    <p>Current Occupancy</p>
    <p id="Occupancy" class="OccupancyValue">Loading...</p>
+  </div>
 
+   <div class="collapsibleArea">
    <button class="collapsible">Settings</button>
+   <div class="content">
+    <form id="form">
+      <label for="maximumCustomersInput">Maximum Customers:</label><br>
+      <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" max="maximumCustomersMax" required><br>
+      <label for="warningRangeInput">Warning Range:</label><br>
+      <input type="number" id="warningRangeInput" name="warningRangeInput" min="1" max="warningRangeMax" required><br>
+      <label for="emailInput">Email:</label><br>
+      <input type="email" id="emailInput" name="emailInput" required><br><br>
+      <input type="submit" value="Submit"><br>
+    </form>
+   </div>
+  </div>
+
+
+
+   <!-- <button class="collapsible">Settings</button>
    <div class="grid-container">
     <div class="grid-item">Maximum Customers:</div>
     <div class="grid-item">
-      <input id="maximumCustomersInput" placeholder="Enter Maximum customers">
+      <input id="maximumCustomersInput" placeholder="Enter Maximum customers" required>
+      <p class="errors" id="maximumCustomersContent"></p>
     </div>
     <div class="grid-item">Warning Range:</div>  
     <div class="grid-item">
-      <input id="warningRangeInput" placeholder="Enter the warning range">
+      <input id="warningRangeInput" placeholder="Enter the warning range" required>
+      <p class="errors" id="warningRangeContent"></p>
     </div>
     <div class="grid-item">Email:</div>
     <div class="grid-item">
-      <input id="emailInput" placeholder="Enter email">
+      <input id="emailInput" placeholder="Enter email" required>
+      <p class="errors" id="emailContent"></p>
     </div> 
     <div class="grid-item"></div>
     <div class="saveButton">
-      <button  id="saveSettingsButton">Accept</button>
+      <input type="submit" id="saveSettingsButton"></button>
       </div>
-   </div>
-   
-
-
+   </div> -->
 
 
  </main>

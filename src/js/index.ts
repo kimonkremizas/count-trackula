@@ -15,7 +15,7 @@ let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/
 
 // let carsElement: HTMLUListElement = <HTMLUListElement> document.getElementById("carsContent");
 // let getContent: HTMLDivElement = <HTMLDivElement> document.getElementById("getContent");
-let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("Occupancy");
+
 // let postContent: HTMLDivElement = <HTMLDivElement>document.getElementById("postContent");
 // let putContent: HTMLDivElement = <HTMLDivElement>document.getElementById("putContent");
 // let deleteContent: HTMLDivElement = <HTMLDivElement>document.getElementById("deleteContent");
@@ -66,7 +66,7 @@ let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getEl
 //     })
 // }
 
-
+let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("Occupancy");
 
 setInterval(function GetCurrentOccupancy(){
     axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
@@ -82,7 +82,7 @@ setInterval(function GetCurrentOccupancy(){
     })
 }, 2000);//run this thang every 2 seconds
 
-
+// collapsible start
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -94,26 +94,60 @@ for (i = 0; i < coll.length; i++) {
       content.style.maxHeight = null;
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-    } 
+    }
   });
 }
+// collapsible end
 
-function SaveSettings(){
-    let maximumCustomers: HTMLInputElement = <HTMLInputElement> document.getElementById("maximumCustomersInput");
-    let maximumCustomersValue : number = +maximumCustomers.value;
-    console.log(maximumCustomersValue)
-    let warningRange: HTMLInputElement = <HTMLInputElement> document.getElementById("warningRangeInput");
-    let warningRangeValue : number = +warningRange.value;
-    console.log(warningRangeValue)
-    let email: HTMLInputElement = <HTMLInputElement> document.getElementById("emailInput");
-    let emailValue : string = email.value;
-    console.log(emailValue)
-}
 
+
+// function SaveSettings(){
+//     let maximumCustomers: HTMLInputElement = <HTMLInputElement> document.getElementById("maximumCustomersInput");
+//      maximumCustomersValue = +maximumCustomers.value;
+
+//     let warningRange: HTMLInputElement = <HTMLInputElement> document.getElementById("warningRangeInput");
+//     warningRangeValue = +warningRange.value;
+
+//     let email: HTMLInputElement = <HTMLInputElement> document.getElementById("emailInput");
+//     emailValue = email.value;
+//     ShowSettings();
+// }
+
+// function ShowSettings(){
+//   maximumCustomersContent.innerHTML=maximumCustomersValue.toString();
+//   warningRangeContent.innerHTML=warningRangeValue.toString();
+//   emailContent.innerHTML=emailValue;
+// }
+
+let maximumCustomers: HTMLInputElement  = <HTMLInputElement> document.getElementById("maximumCustomersInput");
+let warningRange: HTMLInputElement  = <HTMLInputElement> document.getElementById("warningRangeInput");
+var email: HTMLInputElement  = <HTMLInputElement> document.getElementById("emailInput");
+
+let maximumCustomersValue : number= +maximumCustomers.value;
+let warningRangeValue : number = +warningRange.value;
+let emailValue : string = email.value;
+
+// console.log(maximumCustomersValue);
+// console.log(warningRangeValue);
+// console.log(emailValue);
 
 let saveSettingsButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("saveSettingsButton")
-saveSettingsButton.addEventListener("click", SaveSettings);
+//saveSettingsButton.addEventListener("click", SaveSettings);
 
+let maximumCustomersContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("maximumCustomersContent");
+let warningRangeContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("warningRangeContent");
+let emailContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("emailContent");
+
+
+// Check if Warning Range is smaller than Maximum Customers
+
+function WarningRangeLimit(){
+  let maximumCustomersValue : number= +maximumCustomers.value; 
+  warningRange.setAttribute("max",(maximumCustomersValue-1).toString());
+}
+
+maximumCustomers.onchange=WarningRangeLimit;
+warningRange.onchange=WarningRangeLimit;
 
 // function GetDoorTracking():void{
 //     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");

@@ -11,7 +11,7 @@
 body {
     display: grid;
     height: 100vh;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: repeat(10, 1fr);
     font-family: 'Arvo', serif;
     background: #3a7bd5;
     /* fallback for old browsers */
@@ -24,18 +24,24 @@ body {
 // etc
 
 header {
+    grid-row: 1 / span 2;
     padding: 1rem;
     font-size: 150%;
 }
 
 main {
+    grid-row: 3 / span 7;
     padding: 1rem;
     padding-bottom: 300px;
     text-align: center;
     font-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
 footer {
+    grid-row: 10 / span 1;
     padding: 1rem;
     text-align: center;
 }
@@ -94,6 +100,8 @@ h1 {
 
 .OccupancyArea{
     font-size: 300%;
+    grid-column: 5 / span 4;
+    grid-row: 1 / span 1;
 }
 
 
@@ -111,7 +119,7 @@ h1 {
     width: 100%;
     border: none;
     text-align: left;
-    outline: none;
+    //outline: none;
     font-size: 15px;
   }
   
@@ -126,7 +134,12 @@ h1 {
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.5s ease-out;
+  }
+
+  .collapsibleArea{
+    grid-column: 6 / span 2;
+    grid-row: 2 / span 1;
   }
 
 

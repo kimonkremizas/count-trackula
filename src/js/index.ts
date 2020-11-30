@@ -1,10 +1,159 @@
-import axios, {​​ AxiosResponse, AxiosError}​​ from "../../node_modules/axios/index";
-import {IDoorTracking} from "./IDoorTracking";
+import axios, { AxiosResponse, AxiosError } from "../../node_modules/axios/index";
+import { IDoorTracking } from "./IDoorTracking";
 
 
 // let timeout: any;
 
 let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
+
+
+let getLastContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("Occupancy");
+
+setInterval(function GetCurrentOccupancy() {
+  axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
+    .then(function (AxiosResponse): void {
+      //console.log("AxiosResponse: ",AxiosResponse);
+      //console.log("Status Code: ",AxiosResponse.status);
+      getLastContent.innerHTML = AxiosResponse.data.toString();
+      if (AxiosResponse.data >= 75) {
+        overlayOn();
+      }
+      else { overlayOff() }
+    })
+    .catch(function (error: AxiosError): void {
+      console.log(error);
+      let errorMessage = "Error Code: " + error.response.status;
+      console.log(errorMessage);
+    })
+}, 2000);//run this thang every 2 seconds
+
+
+
+let maximumCustomers: HTMLInputElement = <HTMLInputElement>document.getElementById("maximumCustomersInput");
+let warningRange: HTMLInputElement = <HTMLInputElement>document.getElementById("warningRangeInput");
+let email: HTMLInputElement = <HTMLInputElement>document.getElementById("emailInput");
+
+let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
+setCookieButton.addEventListener("click", setCookie);
+let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
+getCookieButton.addEventListener("click", getCookie);
+let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
+clearTextBoxesButton.addEventListener("click", clearTextBoxes);
+
+//  Cookies
+function setCookie() {
+  setmaximumCustomersCookie();
+  setwarningRangeCookie();
+  setemailCookie();
+}
+
+function setmaximumCustomersCookie() {
+  var d = new Date();
+  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  var cookieString = "maximumCustomers=" + maximumCustomers.value;
+  document.cookie = cookieString + ";" + expires + ";path=/";
+
+}
+
+function setwarningRangeCookie() {
+  var d = new Date();
+  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  var cookieString = "warningRange=" + warningRange.value;
+  document.cookie = cookieString;
+  document.cookie = cookieString + ";" + expires + ";path=/";
+}
+
+
+function setemailCookie() {
+  var d = new Date();
+  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  var cookieString = "email=" + email.value;
+  document.cookie = cookieString;
+  document.cookie = cookieString + ";" + expires + ";path=/";
+}
+
+
+function getCookie() {
+  alert(document.cookie);
+}
+
+function clearTextBoxes() {
+  maximumCustomers.value = "";
+  warningRange.value = "";
+  email.value = "";
+}
+
+
+
+// collapsible start
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+// collapsible end
+
+
+let maximumCustomersValue: number = +maximumCustomers.value;
+let warningRangeValue: number = +warningRange.value;
+let emailValue: string = email.value;
+
+// console.log(maximumCustomersValue);
+// console.log(warningRangeValue);
+// console.log(emailValue);
+
+let saveSettingsButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveSettingsButton")
+//saveSettingsButton.addEventListener("click", SaveSettings);
+
+let maximumCustomersContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("maximumCustomersContent");
+let warningRangeContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("warningRangeContent");
+let emailContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("emailContent");
+
+
+// Check if Warning Range is smaller than Maximum Customers
+
+function WarningRangeLimit() {
+  let maximumCustomersValue: number = +maximumCustomers.value;
+  warningRange.setAttribute("max", (maximumCustomersValue - 1).toString());
+}
+
+maximumCustomers.onchange = WarningRangeLimit;
+warningRange.onchange = WarningRangeLimit;
+
+
+// Overlay
+
+function overlayOn() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function overlayOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+let overlayButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("overlayButton")
+overlayButton.addEventListener("click", overlayOn);
+
+let overlay: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay")
+overlay.addEventListener("click", overlayOff);
+
+
+
+
+
+
 // let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
 // let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
 // let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
@@ -41,7 +190,7 @@ let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/
 //         AxiosResponse.data.forEach((doorTracking: IDoorTracking) => {
 //          let newNode:HTMLLIElement = AddLiElement('ID: '+doorTracking.id+', DateTime: '+doorTracking.dateTime+', Occupancy: '+doorTracking.occupancy+', IsEntrance: '+doorTracking.isEntrance);
 //          carsElement.appendChild(newNode);
-        
+
 //         });
 //     })
 //     .catch(function(error:AxiosError):void{
@@ -66,178 +215,9 @@ let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/
 //     })
 // }
 
-let getLastContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("Occupancy");
-
-setInterval(function GetCurrentOccupancy(){
-    axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
-    .then(function(AxiosResponse):void{
-        //console.log("AxiosResponse: ",AxiosResponse);
-        //console.log("Status Code: ",AxiosResponse.status);
-        getLastContent.innerHTML = AxiosResponse.data.toString();
-        if (AxiosResponse.data >= 75){
-          overlayOn();
-        }
-        else {overlayOff()}
-        })
-    .catch(function(error:AxiosError):void{
-        console.log(error);
-        let errorMessage = "Error Code: "+error.response.status;
-        console.log(errorMessage);
-    })
-}, 2000);//run this thang every 2 seconds
 
 
 
-let maximumCustomers: HTMLInputElement  = <HTMLInputElement> document.getElementById("maximumCustomersInput");
-let warningRange: HTMLInputElement  = <HTMLInputElement> document.getElementById("warningRangeInput");
-let email: HTMLInputElement  = <HTMLInputElement> document.getElementById("emailInput");
-
-let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
-setCookieButton.addEventListener("click", setCookie);
-let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
-getCookieButton.addEventListener("click", getCookie);
-let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
-clearTextBoxesButton.addEventListener("click", clearTextBoxes);
-
-//  Cookies
-function setCookie()
-        {
-          setmaximumCustomersCookie();
-          setwarningRangeCookie();
-          setemailCookie();
-        }
-
-        function setmaximumCustomersCookie()
-        {
-          var d = new Date();
-          d.setTime(d.getTime() + (30*24*60*60*1000));
-          var expires = "expires="+ d.toUTCString();
-          var cookieString = "maximumCustomers=" + maximumCustomers.value;
-          document.cookie = cookieString + ";" + expires + ";path=/";
-
-        }
-
-        function setwarningRangeCookie()
-        {
-          var d = new Date();
-          d.setTime(d.getTime() + (30*24*60*60*1000));
-          var expires = "expires="+ d.toUTCString();
-            var cookieString = "warningRange=" + warningRange.value;
-            document.cookie = cookieString;
-            document.cookie = cookieString + ";" + expires + ";path=/";
-        }
-
-
-        function setemailCookie()
-        {
-          var d = new Date();
-          d.setTime(d.getTime() + (30*24*60*60*1000));
-          var expires = "expires="+ d.toUTCString();
-            var cookieString = "email=" + email.value;
-            document.cookie = cookieString;
-            document.cookie = cookieString + ";" + expires + ";path=/";
-        }
-
-
-        function getCookie()
-        {
-            alert(document.cookie);
-        }
-
-        function clearTextBoxes()
-        {
-          maximumCustomers.value = "";
-          warningRange.value = "";
-          email.value = "";
-        }
-
-
-
-        
-
-
-
-// collapsible start
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  });
-}
-// collapsible end
-
-
-
-// function SaveSettings(){
-//     let maximumCustomers: HTMLInputElement = <HTMLInputElement> document.getElementById("maximumCustomersInput");
-//      maximumCustomersValue = +maximumCustomers.value;
-
-//     let warningRange: HTMLInputElement = <HTMLInputElement> document.getElementById("warningRangeInput");
-//     warningRangeValue = +warningRange.value;
-
-//     let email: HTMLInputElement = <HTMLInputElement> document.getElementById("emailInput");
-//     emailValue = email.value;
-//     ShowSettings();
-// }
-
-// function ShowSettings(){
-//   maximumCustomersContent.innerHTML=maximumCustomersValue.toString();
-//   warningRangeContent.innerHTML=warningRangeValue.toString();
-//   emailContent.innerHTML=emailValue;
-// }
-
-
-
-let maximumCustomersValue : number= +maximumCustomers.value;
-let warningRangeValue : number = +warningRange.value;
-let emailValue : string = email.value;
-
-// console.log(maximumCustomersValue);
-// console.log(warningRangeValue);
-// console.log(emailValue);
-
-let saveSettingsButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("saveSettingsButton")
-//saveSettingsButton.addEventListener("click", SaveSettings);
-
-let maximumCustomersContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("maximumCustomersContent");
-let warningRangeContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("warningRangeContent");
-let emailContent: HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("emailContent");
-
-
-// Check if Warning Range is smaller than Maximum Customers
-
-function WarningRangeLimit(){
-  let maximumCustomersValue : number= +maximumCustomers.value; 
-  warningRange.setAttribute("max",(maximumCustomersValue-1).toString());
-}
-
-maximumCustomers.onchange=WarningRangeLimit;
-warningRange.onchange=WarningRangeLimit;
-
-
-// Overlay
-
-function overlayOn() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function overlayOff() {
-  document.getElementById("overlay").style.display = "none";
-}
-
-let overlayButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("overlayButton")
-overlayButton.addEventListener("click", overlayOn);
-
-let overlay: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay")
-overlay.addEventListener("click", overlayOff);
 
 // function GetDoorTracking():void{
 //     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");
@@ -423,7 +403,7 @@ overlay.addEventListener("click", overlayOff);
 //         title: {
 //             text: 'Live Data (Rows JSON)'
 //         },
-    
+
 //         subtitle: {
 //             text: 'Data input from a remote JSON file'
 //         },
@@ -454,7 +434,7 @@ overlay.addEventListener("click", overlayOff);
 //         title: {
 //             text: 'Live Data (Rows JSON)'
 //         },
-    
+
 //         subtitle: {
 //             text: 'Data input from a remote JSON file'
 //         },

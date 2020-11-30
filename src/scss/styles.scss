@@ -98,7 +98,7 @@ h1 {
     }
 }
 
-.OccupancyArea{
+.OccupancyArea {
     font-size: 300%;
     grid-column: 5 / span 4;
     grid-row: 1 / span 1;
@@ -121,26 +121,27 @@ h1 {
     text-align: left;
     //outline: none;
     font-size: 15px;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.collapsible:hover {
     background-color: #ccc;
-  }
-  
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out;
-  }
+}
 
-  .collapsibleArea{
+.collapsibleArea {
     grid-column: 6 / span 2;
     grid-row: 2 / span 1;
-  }
+}
 
 
 .saveButton {
@@ -174,25 +175,32 @@ input {
 
 
 #overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-  }
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
 
-  #text{
+#text {
     position: absolute;
     top: 50%;
     left: 50%;
     font-size: 75px;
     color: rgb(255, 0, 0);
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-  }
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}

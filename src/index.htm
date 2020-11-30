@@ -4,18 +4,18 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div id='Title'>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Count Trackula</title>
-  <link rel="stylesheet" type="text/css" href="bundle.css">
+  <div id='Title'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Count Trackula</title>
+    <link rel="stylesheet" type="text/css" href="bundle.css">
 
-  <link href="/home/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
-  <script type="text/typescript" src="/src/js/index.ts"></script>
+    <link href="/home/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
+    <script type="text/typescript" src="/src/js/index.ts"></script>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
     </style>
-</div>
+  </div>
 
 
 
@@ -27,81 +27,81 @@
 
 
 
-  
 
 
 
 
- <!-------------------------------------------------------------------------------------------->
+
+  <!-------------------------------------------------------------------------------------------->
 
 
- <header>
+  <header>
 
-<!-- Load an icon library -->
-<script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
+    <!-- Load an icon library -->
+    <script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
 
-<div class="navbar">
-  <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
-  <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
-</div>
-   <h1>Count Trackula</h1> 
+    <div class="navbar">
+      <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
+      <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
+    </div>
+    <h1>Count Trackula</h1>
 
 
 
-  <!-- <div id='homeButton'>
+    <!-- <div id='homeButton'>
     <img src="Raspberry_Pi_Logo.svg" width="50px">
   </div> -->
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
     </style>
 
 
 
-</header>
- <main>
-  <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
-  <div class="OccupancyArea">
-   <p>Current Occupancy</p>
-   <p id="Occupancy" class="OccupancyValue">Loading...</p>
-  </div>
+  </header>
+  <main>
+    <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
+    <div class="OccupancyArea">
+      <p>Current Occupancy</p>
+      <p id="Occupancy" class="OccupancyValue">Loading...</p>
+    </div>
 
-<!-- Overlay -->
+    <!-- Overlay -->
 
 
 
-  <div style="padding:20px">
-    <h2>Overlay</h2>
-    <button id="overlayButton">Turn on overlay effect</button>
-  </div>
+    <div style="padding:20px">
+      <h2>Overlay</h2>
+      <button id="overlayButton">Turn on overlay effect</button>
+    </div>
 
-  <div id="overlay">
-    <div id="text">CLOSE THE DOORS!!!</div>
-  </div>
+    <div id="overlay">
+      <div id="text">CLOSE THE DOORS!!!</div>
+    </div>
 
-   <div class="collapsibleArea">
-   <button class="collapsible">Settings</button>
-   <div class="content">
-    <form id="form">
-      <label for="maximumCustomersInput">Maximum Customers:</label><br>
-      <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required><br>
-      <label for="warningRangeInput">Warning Range:</label><br>
-      <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
-      <label for="emailInput">Email:</label><br>
-      <input type="email" id="emailInput" name="emailInput" required><br><br>
-      <!-- <input type="submit" value="Submit"><br> -->
-      <!-- Cookies buttons -->
-      <input type="submit" value="Save Settings" id="setCookieButton"/>
-      <input type="button" value="Get Cookie" id="getCookieButton"/>
-      <input type="button" value="Clear" id="clearTextBoxesButton"/>
-    </form>
-   </div>
-  </div>
+    <div class="collapsibleArea">
+      <button class="collapsible">Settings</button>
+      <div class="content">
+        <form id="form">
+          <label for="maximumCustomersInput">Maximum Customers:</label><br>
+          <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required><br>
+          <label for="warningRangeInput">Warning Range:</label><br>
+          <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
+          <label for="emailInput">Email:</label><br>
+          <input type="email" id="emailInput" name="emailInput" required><br><br>
+          <!-- <input type="submit" value="Submit"><br> -->
+          <!-- Cookies buttons -->
+          <input type="submit" value="Save Settings" id="setCookieButton" />
+          <input type="button" value="Get Cookie" id="getCookieButton" />
+          <input type="button" value="Clear" id="clearTextBoxesButton" />
+        </form>
+      </div>
+    </div>
 
-  
 
-   <!-- <button class="collapsible">Settings</button>
+
+    <!-- <button class="collapsible">Settings</button>
    <div class="grid-container">
     <div class="grid-item">Maximum Customers:</div>
     <div class="grid-item">
@@ -125,11 +125,11 @@
    </div> -->
 
 
- </main>
- <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
+  </main>
+  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
 
-<!--------------------------------------------------------------------------------------------->
-      <!-- <button id="getAllButton"><b>Show all triggers</b></button>
+  <!--------------------------------------------------------------------------------------------->
+  <!-- <button id="getAllButton"><b>Show all triggers</b></button>
       <button id="clearGetAllListButton">Clear List</button>
       <div id="getAllContent">
         <ul id="carsContent">
@@ -143,7 +143,7 @@
       </div> -->
 
 
-    <!-- 
+  <!-- 
     <br> <br>
 
     <div class="side">
@@ -185,7 +185,7 @@
   <script src="bundle.js"></script>
 
 
-<!-- 
+  <!-- 
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>

@@ -149,6 +149,23 @@ function WarningRangeLimit(){
 maximumCustomers.onchange=WarningRangeLimit;
 warningRange.onchange=WarningRangeLimit;
 
+
+// Overlay
+
+function overlayOn() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function overlayOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+let overlayButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("overlayButton")
+overlayButton.addEventListener("click", overlayOn);
+
+let overlay: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay")
+overlay.addEventListener("click", overlayOff);
+
 // function GetDoorTracking():void{
 //     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");
 //     let getInputValue : number = +getInput.value;

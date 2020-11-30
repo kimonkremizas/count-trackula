@@ -87,14 +87,73 @@ setInterval(function GetCurrentOccupancy(){
 }, 2000);//run this thang every 2 seconds
 
 
-// function CheckOccupancy(){
-//   AxiosResponse.data
-// }
+
+let maximumCustomers: HTMLInputElement  = <HTMLInputElement> document.getElementById("maximumCustomersInput");
+let warningRange: HTMLInputElement  = <HTMLInputElement> document.getElementById("warningRangeInput");
+let email: HTMLInputElement  = <HTMLInputElement> document.getElementById("emailInput");
+
+let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
+setCookieButton.addEventListener("click", setCookie);
+let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
+getCookieButton.addEventListener("click", getCookie);
+let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
+clearTextBoxesButton.addEventListener("click", clearTextBoxes);
+
+//  Cookies
+function setCookie()
+        {
+          setmaximumCustomersCookie();
+          setwarningRangeCookie();
+          setemailCookie();
+        }
+
+        function setmaximumCustomersCookie()
+        {
+          var d = new Date();
+          d.setTime(d.getTime() + (30*24*60*60*1000));
+          var expires = "expires="+ d.toUTCString();
+          var cookieString = "maximumCustomers=" + maximumCustomers.value;
+          document.cookie = cookieString + ";" + expires + ";path=/";
+
+        }
+
+        function setwarningRangeCookie()
+        {
+          var d = new Date();
+          d.setTime(d.getTime() + (30*24*60*60*1000));
+          var expires = "expires="+ d.toUTCString();
+            var cookieString = "warningRange=" + warningRange.value;
+            document.cookie = cookieString;
+            document.cookie = cookieString + ";" + expires + ";path=/";
+        }
+
+
+        function setemailCookie()
+        {
+          var d = new Date();
+          d.setTime(d.getTime() + (30*24*60*60*1000));
+          var expires = "expires="+ d.toUTCString();
+            var cookieString = "email=" + email.value;
+            document.cookie = cookieString;
+            document.cookie = cookieString + ";" + expires + ";path=/";
+        }
+
+
+        function getCookie()
+        {
+            alert(document.cookie);
+        }
+
+        function clearTextBoxes()
+        {
+          maximumCustomers.value = "";
+          warningRange.value = "";
+          email.value = "";
+        }
 
 
 
-
-
+        
 
 
 
@@ -135,9 +194,7 @@ for (i = 0; i < coll.length; i++) {
 //   emailContent.innerHTML=emailValue;
 // }
 
-let maximumCustomers: HTMLInputElement  = <HTMLInputElement> document.getElementById("maximumCustomersInput");
-let warningRange: HTMLInputElement  = <HTMLInputElement> document.getElementById("warningRangeInput");
-var email: HTMLInputElement  = <HTMLInputElement> document.getElementById("emailInput");
+
 
 let maximumCustomersValue : number= +maximumCustomers.value;
 let warningRangeValue : number = +warningRange.value;

@@ -74,6 +74,10 @@ setInterval(function GetCurrentOccupancy(){
         //console.log("AxiosResponse: ",AxiosResponse);
         //console.log("Status Code: ",AxiosResponse.status);
         getLastContent.innerHTML = AxiosResponse.data.toString();
+        if (AxiosResponse.data >= 75){
+          overlayOn();
+        }
+        else {overlayOff()}
         })
     .catch(function(error:AxiosError):void{
         console.log(error);
@@ -81,6 +85,18 @@ setInterval(function GetCurrentOccupancy(){
         console.log(errorMessage);
     })
 }, 2000);//run this thang every 2 seconds
+
+
+// function CheckOccupancy(){
+//   AxiosResponse.data
+// }
+
+
+
+
+
+
+
 
 // collapsible start
 var coll = document.getElementsByClassName("collapsible");

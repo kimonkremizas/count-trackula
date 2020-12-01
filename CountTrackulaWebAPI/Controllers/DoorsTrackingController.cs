@@ -154,7 +154,7 @@ namespace CountTrackulaWebAPI.Controllers
                     }
                 }
             }
-            return 1;
+            return 0;
         }
 
 

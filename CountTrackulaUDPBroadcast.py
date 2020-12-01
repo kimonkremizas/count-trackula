@@ -26,19 +26,20 @@ while True:
     o = sense.get_orientation()
     yaw = round(o["yaw"],3)
     print("yaw: {0}".format(yaw))
-    if yaw>resting_yaw+5.5 and yaw<resting_yaw+9.5:
-        if counter != 1:
-            print("-------------Door opened. PUT BROADCAST HERE")
+    if yaw>resting_yaw+30
+        print("-------------Door opened")
+        sense.clear(red)
+        counter += 1
+    else:
+        print("-------------Door closed"
+        if counter > 0:
+            print("-------------BROADCAST!!!!")
             now = datetime.now()
             strftime = now.strftime('%Y-%m-%d %H:%M:%S.%f')
             strftimeString = str(strftime[:-4])
             isEntranceString = str(1)
             data =strftimeString+","+isEntranceString
             s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
-            sense.clear(red)
-            counter += 1
-        else:
-            print("-------------Door closed")
             sense.clear(green)
             counter = 0
     time.sleep(0.10)

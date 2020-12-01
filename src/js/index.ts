@@ -15,10 +15,12 @@ setInterval(function GetCurrentOccupancy() {
       //console.log("AxiosResponse: ",AxiosResponse);
       //console.log("Status Code: ",AxiosResponse.status);
       getLastContent.innerHTML = AxiosResponse.data.toString();
-      if (AxiosResponse.data >= 75) {
-        overlayOn();
+      if (getMaximumCustomersCookie() != ""){
+        if (AxiosResponse.data >= +getMaximumCustomersCookie()-(+getWarningRangeCookie())) {
+          overlayOn();
+        }
+        else { overlayOff() }
       }
-      else { overlayOff() }
     })
     .catch(function (error: AxiosError): void {
       console.log(error);
@@ -27,11 +29,15 @@ setInterval(function GetCurrentOccupancy() {
     })
 }, 2000);//run this thang every 2 seconds
 
-
+// console.log(getMaximumCustomersCookie())
 
 let maximumCustomers: HTMLInputElement = <HTMLInputElement>document.getElementById("maximumCustomersInput");
 let warningRange: HTMLInputElement = <HTMLInputElement>document.getElementById("warningRangeInput");
 let email: HTMLInputElement = <HTMLInputElement>document.getElementById("emailInput");
+
+let maximumCustomersValue = maximumCustomers.value;
+let warningRangeValue = warningRange.value;
+let emailValue = email.value;
 
 let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
 setCookieButton.addEventListener("click", setCookie);
@@ -40,44 +46,58 @@ getCookieButton.addEventListener("click", getCookie);
 let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
 clearTextBoxesButton.addEventListener("click", clearTextBoxes);
 
+
 //  Cookies
 function setCookie() {
-  setmaximumCustomersCookie();
-  setwarningRangeCookie();
-  setemailCookie();
+  setAnyCookie("maximumCustomers",maximumCustomers.value);
+  setAnyCookie("warningRange",warningRange.value);
+  setAnyCookie("email",email.value);
 }
 
-function setmaximumCustomersCookie() {
+function setAnyCookie(cookieName:string,cookieValue:string) {
   var d = new Date();
   d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
   var expires = "expires=" + d.toUTCString();
-  var cookieString = "maximumCustomers=" + maximumCustomers.value;
-  document.cookie = cookieString + ";" + expires + ";path=/";
-
-}
-
-function setwarningRangeCookie() {
-  var d = new Date();
-  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toUTCString();
-  var cookieString = "warningRange=" + warningRange.value;
-  document.cookie = cookieString;
-  document.cookie = cookieString + ";" + expires + ";path=/";
-}
-
-
-function setemailCookie() {
-  var d = new Date();
-  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toUTCString();
-  var cookieString = "email=" + email.value;
-  document.cookie = cookieString;
+  var cookieString = cookieName +"=" + cookieValue;
   document.cookie = cookieString + ";" + expires + ";path=/";
 }
 
 
 function getCookie() {
   alert(document.cookie);
+}
+
+
+function getMaximumCustomersCookie() {
+  var name = "maximumCustomers=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function getWarningRangeCookie() {
+  var name = "warningRange=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
 
 function clearTextBoxes() {
@@ -106,9 +126,7 @@ for (i = 0; i < coll.length; i++) {
 // collapsible end
 
 
-let maximumCustomersValue: number = +maximumCustomers.value;
-let warningRangeValue: number = +warningRange.value;
-let emailValue: string = email.value;
+
 
 // console.log(maximumCustomersValue);
 // console.log(warningRangeValue);

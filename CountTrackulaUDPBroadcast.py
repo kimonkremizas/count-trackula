@@ -31,7 +31,7 @@ while True:
         sense.clear(red)
         counter += 1
     else:
-        print("-------------Door closed"
+        print("-------------Door closed")
         if counter > 0:
             print("-------------BROADCAST!!!!")
             now = datetime.now()

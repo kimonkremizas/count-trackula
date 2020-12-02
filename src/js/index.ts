@@ -56,8 +56,10 @@ let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementB
 getCookieButton.addEventListener("click", getCookie);
 let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
 clearTextBoxesButton.addEventListener("click", clearTextBoxes);
-let deleteCookiesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButton")
-deleteCookiesButton.addEventListener("click", deleteCookies);
+let deleteCookiesButtonSettings: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonSettings")
+deleteCookiesButtonSettings.addEventListener("click", deleteCookies);
+let deleteCookiesButtonOverlay: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonOverlay")
+deleteCookiesButtonOverlay.addEventListener("click", deleteCookies);
 
 
 //  Cookies

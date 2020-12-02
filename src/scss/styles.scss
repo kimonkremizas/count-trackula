@@ -1,12 +1,26 @@
-// body {
-//     font-family: 'Arvo', serif;
-//     background-image: url("https://images.hdqwalls.com/wallpapers/simple-subtle-abstract-dark-minimalism-4k-u9.jpg");
-//     background-color: grey;
-//     background-size: cover;
-// }
+/* This hides all pages */
+.page {
+    display: none;
+}
+
+/* This displays the first page */
+.default {
+    display: block;
+}
+
+/* This displays the page corresponding to the one you clicked on */
+:target {
+    display: block;
+}
+
+/* This hides the default page when another page is clicked */
+:target ~ .default {
+    display: none;
+}
 
 
-///////////////////////////////////////////////////////////////////////////
+
+
 
 body {
     display: grid;
@@ -39,6 +53,10 @@ main {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
+
+
+
+
 
 footer {
     grid-row: 10 / span 1;
@@ -98,13 +116,28 @@ h1 {
     }
 }
 
-.OccupancyArea {
+#OccupancyArea {
     font-size: 300%;
     grid-column: 5 / span 4;
     grid-row: 1 / span 1;
 }
 
+// #homePage {
+// grid-row: 3 / span 7;
+// padding: 1rem;
+// padding-bottom: 300px;
+// text-align: center;
+// font-size: 100%;
+// display: grid;
+// grid-template-columns: repeat(12, 1fr);
+// grid-template-rows: repeat(2, 1fr);
+// }
 
+#graphsPage {
+    font-size: 300%;
+    grid-column: 5 / span 4;
+    grid-row: 1 / span 1;
+}
 
 
 
@@ -138,10 +171,17 @@ h1 {
     transition: max-height 0.5s ease-out;
 }
 
-.collapsibleArea {
+#collapsibleArea {
     grid-column: 6 / span 2;
     grid-row: 2 / span 1;
 }
+
+
+.default {
+    grid-column: 6 / span 2;
+    grid-row: 2 / span 1;
+}
+
 
 
 .saveButton {
@@ -221,6 +261,8 @@ input {
     text-align: center;
     width: 300px;
     padding: 25px;
+    // padding:0;
+    // margin:0;
 	text-decoration:none;
     text-shadow:0px 1px 0px #ffffff;
     position:absolute;
@@ -236,7 +278,7 @@ input {
 	background-color:#ccc2a6;
 }
 
-.deleteCookiesButtonOverlay:active {
-	position:relative;
-	top:1px;
-}
+// .deleteCookiesButtonOverlay:active {
+// 	position:relative;
+// 	top:1px;
+// }

@@ -17,23 +17,9 @@
     </style>
   </div>
 
-
-
 </head>
 
 <body>
-
-
-
-
-
-
-
-
-
-
-  <!-------------------------------------------------------------------------------------------->
-
 
   <header>
 
@@ -41,50 +27,48 @@
     <script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
 
     <div class="navbar">
-      <a href="index.htm"><i class="fa fa-fw fa-home" id="homeButton"></i> Home</a>
-      <a href="index.htm"><i class="fas fa-chart-area" id="graphsButton"></i> Graphs</a>
+      <a href="#homePage"><i class="fa fa-fw fa-home" id="homeButton"></i> Home</a>
+      <a href="#graphsPage"><i class="fas fa-chart-area" id="graphsButton"></i> Graphs</a>
       <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
     </div>
     <h1>Count Trackula</h1>
-
-
-
-    <!-- <div id='homeButton'>
-    <img src="Raspberry_Pi_Logo.svg" width="50px">
-  </div> -->
 
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
     </style>
 
-
-
   </header>
   <main>
 
+    <!-- GRAPHS PAGE -->
+    <div class="page" id="graphsPage">
 
-    <!-- HOME PAGE
-    <div id="homePage"> -->
+      <p id="fake">THIS IS A FAKE GRAPHS PAGE</p>
+    </div>
 
-      <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
-      <div class="OccupancyArea">
+    <!-- HOME PAGE -->
+    <div class="page default" id="homePage">
+
+
+      <div id="OccupancyArea">
         <p>Current Occupancy</p>
         <p id="Occupancy" class="OccupancyValue">Loading...</p>
       </div>
 
       <!-- Overlay -->
-      <div style="padding:20px">
+      <div style="padding:20px" hidden>
         <h2>Overlay</h2>
         <button id="overlayButton">Turn on overlay effect</button>
       </div>
 
       <div id="overlay">
         <div id="text">CLOSE THE DOORS!!!</div>
-        <input type="button" value="Clear Settings" class="deleteCookiesButtonOverlay" id="deleteCookiesButton" />
+        <input type="button" value="Clear Settings" class="deleteCookiesButtonOverlay"
+          id="deleteCookiesButtonOverlay" />
       </div>
 
-      <div class="collapsibleArea">
-        <button class="collapsible">Settings</button>
+      <div id="collapsibleArea">
+        <button class="collapsible"><b>Settings</b></button>
         <div class="content">
           <form id="form">
             <label for="maximumCustomersInput">Maximum Customers:</label><br>
@@ -93,26 +77,20 @@
             <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
             <label for="emailInput">Email:</label><br>
             <input type="email" id="emailInput" name="emailInput" required><br><br>
-            <!-- <input type="submit" value="Submit"><br> -->
+
             <!-- Cookies buttons -->
             <input type="submit" value="Save Settings" id="setCookieButton" />
             <input type="button" value="Get Cookie" id="getCookieButton" />
             <input type="button" value="Clear Form" id="clearTextBoxesButton" />
-            <input type="button" value="Clear Settings" id="deleteCookiesButton" />
+            <input type="button" value="Clear Settings" id="deleteCookiesButtonSettings" />
           </form>
         </div>
       </div>
 
-    <!-- </div> -->
-
-
-    <!-- GRAPHS PAGE -->
-    <!-- <div id="graphsPage" hidden="true">
-
-      <p id="fake" >THIS IS A FAKE GRAPHS PAGE</p>
-    </div> -->
+    </div>
 
   </main>
+
   <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
 
 

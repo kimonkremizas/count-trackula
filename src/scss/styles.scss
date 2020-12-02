@@ -193,6 +193,7 @@ input {
     /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer;
     /* Add a pointer on hover */
+
 }
 
 #text {
@@ -203,4 +204,38 @@ input {
     color: rgb(255, 0, 0);
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+
+.deleteCookiesButtonOverlay {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background-color:#eae0c2;
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:16px;
+    font-weight:bold;
+    text-align: center;
+	padding:12px 16px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    position:absolute;
+    top:75%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    //color: white; background: #666666; opacity: .8;
+    z-index: 1000;
+}
+
+.deleteCookiesButtonOverlay:hover {
+	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+
+.deleteCookiesButtonOverlay:active {
+	position:relative;
+	top:1px;
 }

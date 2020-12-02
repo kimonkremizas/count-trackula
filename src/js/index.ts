@@ -4,7 +4,18 @@ import { IDoorTracking } from "./IDoorTracking";
 
 // let timeout: any;
 
-let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
+ let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
+//let doorTrackingWebUrl: string = "https://localhost:44371/api/DoorsTracking"
+
+
+// let homeButton: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("homeButton")
+// homeButton.addEventListener("click", ShowHomePage);
+// let graphsButton: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("graphsButton")
+// graphsButton.addEventListener("click", ShowGraphsPage);
+
+// function ShowHomePage(){
+
+// }
 
 
 let getLastContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("Occupancy");
@@ -27,9 +38,9 @@ setInterval(function GetCurrentOccupancy() {
       let errorMessage = "Error Code: " + error.response.status;
       console.log(errorMessage);
     })
-}, 2000);//run this thang every 2 seconds
+}, 3000);//run this thang every 3 seconds
 
-// console.log(getMaximumCustomersCookie())
+
 
 let maximumCustomers: HTMLInputElement = <HTMLInputElement>document.getElementById("maximumCustomersInput");
 let warningRange: HTMLInputElement = <HTMLInputElement>document.getElementById("warningRangeInput");
@@ -45,6 +56,8 @@ let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementB
 getCookieButton.addEventListener("click", getCookie);
 let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
 clearTextBoxesButton.addEventListener("click", clearTextBoxes);
+let deleteCookiesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButton")
+deleteCookiesButton.addEventListener("click", deleteCookies);
 
 
 //  Cookies
@@ -106,7 +119,11 @@ function clearTextBoxes() {
   email.value = "";
 }
 
-
+function deleteCookies(){
+  document.cookie = "maximumCustomers= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  document.cookie = "warningRange= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+}
 
 // collapsible start
 var coll = document.getElementsByClassName("collapsible");

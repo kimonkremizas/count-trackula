@@ -41,8 +41,8 @@
     <script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
 
     <div class="navbar">
-      <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
-      <a href="index.htm"><i class="fas fa-chart-area"></i> Graphs</a>
+      <a href="index.htm"><i class="fa fa-fw fa-home" id="homeButton"></i> Home</a>
+      <a href="index.htm"><i class="fas fa-chart-area" id="graphsButton"></i> Graphs</a>
       <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
     </div>
     <h1>Count Trackula</h1>
@@ -61,47 +61,80 @@
 
   </header>
   <main>
-    <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
-    <div class="OccupancyArea">
-      <p>Current Occupancy</p>
-      <p id="Occupancy" class="OccupancyValue">Loading...</p>
-    </div>
-
-    <!-- Overlay -->
 
 
+    <!-- HOME PAGE
+    <div id="homePage"> -->
 
-    <div style="padding:20px">
-      <h2>Overlay</h2>
-      <button id="overlayButton">Turn on overlay effect</button>
-    </div>
-
-    <div id="overlay">
-      <div id="text">CLOSE THE DOORS!!!</div>
-    </div>
-
-    <div class="collapsibleArea">
-      <button class="collapsible">Settings</button>
-      <div class="content">
-        <form id="form">
-          <label for="maximumCustomersInput">Maximum Customers:</label><br>
-          <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required><br>
-          <label for="warningRangeInput">Warning Range:</label><br>
-          <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
-          <label for="emailInput">Email:</label><br>
-          <input type="email" id="emailInput" name="emailInput" required><br><br>
-          <!-- <input type="submit" value="Submit"><br> -->
-          <!-- Cookies buttons -->
-          <input type="submit" value="Save Settings" id="setCookieButton" />
-          <input type="button" value="Get Cookie" id="getCookieButton" />
-          <input type="button" value="Clear" id="clearTextBoxesButton" />
-        </form>
+      <!-- <button id="getLastButton"><b>Show current Occupancy</b></button> -->
+      <div class="OccupancyArea">
+        <p>Current Occupancy</p>
+        <p id="Occupancy" class="OccupancyValue">Loading...</p>
       </div>
-    </div>
+
+      <!-- Overlay -->
+      <div style="padding:20px">
+        <h2>Overlay</h2>
+        <button id="overlayButton">Turn on overlay effect</button>
+      </div>
+
+      <div id="overlay">
+        <div id="text">CLOSE THE DOORS!!!</div>
+        <input type="button" value="Clear Settings" class="deleteCookiesButtonOverlay" id="deleteCookiesButton" />
+      </div>
+
+      <div class="collapsibleArea">
+        <button class="collapsible">Settings</button>
+        <div class="content">
+          <form id="form">
+            <label for="maximumCustomersInput">Maximum Customers:</label><br>
+            <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required><br>
+            <label for="warningRangeInput">Warning Range:</label><br>
+            <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
+            <label for="emailInput">Email:</label><br>
+            <input type="email" id="emailInput" name="emailInput" required><br><br>
+            <!-- <input type="submit" value="Submit"><br> -->
+            <!-- Cookies buttons -->
+            <input type="submit" value="Save Settings" id="setCookieButton" />
+            <input type="button" value="Get Cookie" id="getCookieButton" />
+            <input type="button" value="Clear Form" id="clearTextBoxesButton" />
+            <input type="button" value="Clear Settings" id="deleteCookiesButton" />
+          </form>
+        </div>
+      </div>
+
+    <!-- </div> -->
+
+
+    <!-- GRAPHS PAGE -->
+    <!-- <div id="graphsPage" hidden="true">
+
+      <p id="fake" >THIS IS A FAKE GRAPHS PAGE</p>
+    </div> -->
+
+  </main>
+  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
 
 
 
-    <!-- <button class="collapsible">Settings</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <button class="collapsible">Settings</button>
    <div class="grid-container">
     <div class="grid-item">Maximum Customers:</div>
     <div class="grid-item">
@@ -125,8 +158,7 @@
    </div> -->
 
 
-  </main>
-  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
+
 
   <!--------------------------------------------------------------------------------------------->
   <!-- <button id="getAllButton"><b>Show all triggers</b></button>

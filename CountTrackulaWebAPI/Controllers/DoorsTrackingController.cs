@@ -259,8 +259,16 @@ namespace CountTrackulaWebAPI.Controllers
 
         int GetId()
         {
-            int max = GetAll().Max(x => x.Id);
-            return max + 1;
+            if (GetAll().LongCount() != 0 )
+            {
+                int max = GetAll().Max(x => x.Id);
+                return max + 1;
+            }
+            else
+            {
+                return 1;
+            }
+
         }
     }
 }

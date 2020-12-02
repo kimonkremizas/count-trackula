@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CountTrackulaClient</name>
+    </assembly>
+    <members>
+        <member name="M:CountTrackulaClient.Program.Main(System.String[])">
+            <summary>
+            Main method that receives broadcast UDP messages and creates new DoorTracking object
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:CountTrackulaClient.Program.Parse(System.String)">
+            <summary>
+            Method that splits the response string to multiple parts that are saved in variables using the specified separator
+            </summary>
+            <param name="response"></param>
+        </member>
+    </members>
+</doc>

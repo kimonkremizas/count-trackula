@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using CountTrackulaClient.Controllers;
@@ -20,6 +21,20 @@ namespace CountTrackulaClient
         // Initialize isEntranceLine variable
         static string isEntranceLine = "";
 
+
+        /// <summary>
+        /// Method that creates a new DB row which resets Occupancy to zero when called.
+        /// </summary>
+        static void ResetCounter()
+        {
+            var dateTimeNow = DateTime.Now;
+            // Create new DoorTracking object with the newly created properties
+            DoorTracking resetDoorTracking = new DoorTracking(dateTimeNow, 0, false);
+            // This object is the result of the HTTP POST method that is used in this very line
+            DoorTracking doorTracking = TaskController.AddDoorTrackingAsync(resetDoorTracking).Result;
+        }
+
+
         /// <summary>
         /// Main method that receives broadcast UDP messages and creates new DoorTracking object
         /// </summary>
@@ -32,9 +47,29 @@ namespace CountTrackulaClient
                 // Listen to all IPs and ports in the network
                 IPEndPoint remoteEndPoint = new IPEndPoint(0, 0);
 
+                
                 while (true)
                 {
+                    // RESET TIMER
+                    var DailyTime = "00:00:00";
+                    var timeParts = DailyTime.Split(new char[1] { ':' });
 
+                    var dateNow = DateTime.Now;
+                    var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
+                        int.Parse(timeParts[0]), int.Parse(timeParts[1]), int.Parse(timeParts[2]));
+                    TimeSpan ts;
+                    if (date > dateNow)
+                        ts = date - dateNow;
+                    else
+                    {
+                        date = date.AddDays(1);
+                        ts = date - dateNow; // 3/12/2020 12:00:00 - 2/12/2020 :12:15:00
+                    }
+                    //waits certain time and run the code
+                    Task.Delay(ts).ContinueWith((x) => ResetCounter());
+
+                    
+                    // Listen to Broadcast
                     Console.WriteLine("Waiting for broadcast {0}", socket.Client.LocalEndPoint);
                     byte[] datagramReceived = socket.Receive(ref remoteEndPoint);
                     string message = Encoding.ASCII.GetString(datagramReceived, 0, datagramReceived.Length);

@@ -12,6 +12,8 @@ namespace CountTrackulaClient.Controllers
     public class TaskController
     {
         private const string DoorsTrackingUri = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
+        //private const string DoorsTrackingUri = "https://localhost:44371/api/DoorsTracking";
+
         public TaskController()
         {
         }

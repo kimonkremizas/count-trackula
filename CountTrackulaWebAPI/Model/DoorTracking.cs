@@ -19,12 +19,20 @@ namespace CountTrackulaWebAPI.Model
 
             }
 
-            public DoorTracking(int id, DateTime dateTime, int occupancy, bool isEntrance)
+        //public DoorTracking(DateTime dateTime, int occupancy)
+        //{
+        //    DateTime = dateTime;
+        //    Occupancy = occupancy;
+        //}
+
+        public DoorTracking(int id, DateTime dateTime, int occupancy, bool isEntrance)
             {
                 Id = id;
                 DateTime = dateTime;
                 Occupancy = occupancy;
                 IsEntrance = isEntrance;
             }
+
+
     }
 }

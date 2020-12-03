@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
@@ -23,7 +24,9 @@ namespace CountTrackulaWebAPI.Controllers
         static string conn = "Server=tcp:3rdsemesterserver.database.windows.net,1433;Initial Catalog=CountTrackulaDB;Persist Security Info=False;User ID=werty89;Password=Machinehead1989;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         //static string connStorage = "DefaultEndpointsProtocol=https;AccountName=counttrackula;AccountKey=gH+ZupWcZG77VaQLb23Pjt6t2z22b0G9xJ3MM5XFfILCn43M0+DIjT5aTPQS/cAVpLYHFyXIJcOGlhyHIxi4bg==;EndpointSuffix=core.windows.net";
 
+        List<DoorTrackingOccupancyTime> OccupancyWithTimeList = new List<DoorTrackingOccupancyTime>();
         List<DoorTracking> DoorTrackingList = new List<DoorTracking>();
+
 
         // GET: api/<DoorsTrackingController>
         [HttpGet(Name = "GetAll")]
@@ -45,27 +48,66 @@ namespace CountTrackulaWebAPI.Controllers
                             int occupancy = reader.GetInt32(2);
                             bool isEntrance = reader.GetBoolean(3);
 
+
                             DoorTrackingList.Add(new DoorTracking(id, dateTime, occupancy,isEntrance));
                         }
                     }
                 }
             }
-            // local save to json file
-            string json = System.Text.Json.JsonSerializer.Serialize(DoorTrackingList);
-            var size = json.Length * sizeof(Char);
+            //// local save to json file
+            //string json = System.Text.Json.JsonSerializer.Serialize(OccupancyWithTimeList);
+            //string jsonConverted = json.Replace("{", "[");
+            //string jsonConverted2 = jsonConverted.Replace("}", "]");
+            //string jsonConverted3 = jsonConverted2.Replace("\"DateTime\":", "");
+            //string jsonConverted4 = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
+            //var size = jsonConverted4.Length * sizeof(Char);
 
-            if (size < 2000000)
-            {
-                string filePath = @".";
-                string fileName = @"CountTrackulaWebAPI.json";
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(filePath, fileName)))
-                {
-                    outputFile.Write(json);
-                }
+            //if (size < 2000000)
+            //{
+            //    string filePath = @".";
+            //    string fileName = @"CountTrackulaWebAPI.json";
+            //    using (StreamWriter outputFile = new StreamWriter(Path.Combine(filePath, fileName)))
+            //    {
+            //        outputFile.Write(jsonConverted4);
+            //    }
 
-            }
+            //}
             return DoorTrackingList;
         }
+
+        // GET: api/<DoorsTrackingController>/Highcharts.json
+        [HttpGet("Highcharts.json", Name = "GetAllToJson")]
+        public string GetAllToJson()
+        {
+            string selectAll = "select dateTime, occupancy from DoorsTracking";
+
+            using (SqlConnection databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectAll, databaseConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime dateTime = reader.GetDateTime(0);
+                            int occupancy = reader.GetInt32(1);
+                            
+                            OccupancyWithTimeList.Add(new DoorTrackingOccupancyTime(dateTime, occupancy));
+                        }
+                    }
+                }
+            }
+
+            string json = System.Text.Json.JsonSerializer.Serialize(OccupancyWithTimeList);
+            string jsonConverted = json.Replace("{", "[");
+            string jsonConverted2 = jsonConverted.Replace("}", "]");
+            string jsonConverted3 = jsonConverted2.Replace("\"DateTime\":", "");
+            string jsonConverted4 = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
+            
+            return jsonConverted4;
+        }
+
 
         // GET api/<DoorsTrackingController>/5
         [HttpGet("{id}", Name = "GetById")]

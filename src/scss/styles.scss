@@ -20,8 +20,6 @@
 
 
 
-
-
 body {
     display: grid;
     height: 100vh;
@@ -56,9 +54,6 @@ main {
 }
 
 
-
-
-
 footer {
     grid-row: 10 / span 1;
     padding: 1rem;
@@ -73,9 +68,6 @@ h1 {
     color: red;
     text-shadow: 2px 2px 5px black;
 }
-
-
-
 
 
 /* Style the navigation bar */
@@ -141,8 +133,6 @@ h1 {
 }
 
 
-
-
 // COLLAPSIBLE
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
@@ -163,35 +153,35 @@ h1 {
     background-color: #ccc;
 }
 
-/* Style the collapsible content. Note: hidden by default */
+
+/* Style the collapsible content. Note: hidden by default //Style the text and input */
 .content {
-    padding: 0 18px;
+    padding: 0px 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out;
 }
+label{
+    display: inline-block;
+  width: 180px;
+  text-align: right;
+  padding: 8px; 
+}
+input{
+    display: inline-block;
+}
+
 
 #collapsibleArea {
     grid-column: 5 / span 6;
     grid-row: 2 / span 1;
-
 }
 
 
 .default {
     grid-column: 5 / span 6;
     grid-row: 2 / span 1;
-}
-
-.inputFields{
-    grid-column: 8 / span 3;
-    padding: 2%;
-}
-
-.inputLabels{
-    grid-column: 5 / span 3;
-    direction: rtl;
 }
 
 .saveButton {
@@ -256,11 +246,60 @@ input {
     -ms-transform: translate(-50%, -50%);
 }
 
+.deleteSettingsButtonOverlay{
+    box-shadow: 0px 1px 0px 0px #1c1b18;
+	background-color:#d6d6d6;
+	border-radius:12px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#23241e;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+    padding:5px 6px;
+    margin:8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	&:hover {
+    background-color:#a3a19d;
+    }
+ &:active {
+	position:relative;
+	top:1px;
+}
+ }
+
+ .saveSettingsButtonOverlay
+ {
+    box-shadow: 0px 1px 0px 0px #1c1b18;
+	background-color:#adffb4;
+	border-radius:10px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#23241e;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+    padding:5px 6px;
+    margin:8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+    &:hover{
+	background-color:#4bd469;
+}
+&:active{
+	position:relative;
+	top:1px;
+}
+}
+
 .deleteCookiesButtonOverlay {
 	box-shadow: 0px 1px 0px 0px #1c1b18;
 	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
 	background-color:#eae0c2;
-	border-radius:15px;
+	border-radius:10px;
 	border:2px solid #333029;
 	display:inline-block;
 	cursor:pointer;
@@ -301,25 +340,27 @@ input {
     grid-column: 10 / span 1;
     //border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
   }
-  
-  /* Tooltip text */
-  .tooltip .tooltiptext {
+
+  .tooltiptext{
+    font-size:12px;
     visibility: hidden;
-    width: 200px;
+    width: 250px;
     opacity: 0.9;
     background-color: black;
     color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-    top: -100%;
-    right: 100%;
-
-   
+    top: 10%;
+    right: 100%;   
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
   }
+
+  .fas fa-info-circle{
+    color: rgb(106, 106, 177);
+}
   
   /* Show the tooltip text when you mouse over the tooltip container */
   .tooltip:hover .tooltiptext {
@@ -338,6 +379,3 @@ input {
 //     border-color: transparent black transparent transparent;
 //   }
 
-.fas{
-    color: rgb(106, 106, 177);
-}

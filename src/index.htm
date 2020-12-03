@@ -69,24 +69,28 @@
 
       <div id="collapsibleArea">
         <button class="collapsible"><b>Settings</b></button>
+
         <div class="content">
-          <form id="form">
-            <label class="inputLabels" for="maximumCustomersInput">Maximum Customers:</label>
-            <input type="number" class="inputFields" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required>
+          <form action="/form/submit" method="post">
+
+            <label for="maximumCustomersInput">Maximum Customers:</label>
+            <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required>
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltiptext">Enter the maximum number of people allowed to be inside the store at any point</span>
             </div>
             <br>
-            <label class="inputLabels"  for="warningRangeInput">Warning Range:</label>
-            <input type="number"  class="inputFields" id="warningRangeInput" name="warningRangeInput" min="0">
+
+            <label for="warningRangeInput">Warning Range:</label>
+            <input type="number" id="warningRangeInput" name="warningRangeInput" min="0">
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltiptext">This will display a warning when the Current Occupancy reaches the Maximum Occupancy minus this Warning Range (optional)</span>
             </div>
             <br>
-            <label class="inputLabels"  for="emailInput">Email:</label>
-            <input type="email"  class="inputFields" id="emailInput" name="emailInput" required>
+
+            <label for="emailInput">Email:</label>
+            <input type="email" id="emailInput" name="emailInput" required>
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltiptext">Enter the email where you will be notified</span>
@@ -94,19 +98,19 @@
             <br><br>
 
             <!-- Cookies buttons -->
-            <input type="submit" value="Save Settings" id="setCookieButton" />
-            <input type="button" value="Get Cookie" id="getCookieButton" />
-            <input type="button" value="Clear Form" id="clearTextBoxesButton" />
-            <input type="button" value="Clear Settings" id="deleteCookiesButtonSettings" />
-          </form>
+            <input type="button" value="Clear Settings" class ="deleteSettingsButtonOverlay" id="deleteCookiesButtonSettings" />
+            <input type="submit" value="Save Settings" class ="saveSettingsButtonOverlay" id="setCookieButton" />        
+           </form>
         </div>
       </div>
-
     </div>
-
+    
   </main>
 
-  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon</footer>
+  <footer>Count Trackula team: Andrei, Ani, Josh, Kimon
+    <input type="button" value="Clear Form" id="clearTextBoxesButton"/>
+    <input type="button" value="Get Cookie" id="getCookieButton"/>
+  </footer>
 
 
 

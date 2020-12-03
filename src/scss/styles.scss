@@ -50,7 +50,8 @@ main {
     text-align: center;
     font-size: 100%;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr  0.2fr 1fr 1fr 0.2fr 1fr 1fr 1fr 1fr 1fr;
+    //grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
 
@@ -172,17 +173,26 @@ h1 {
 }
 
 #collapsibleArea {
-    grid-column: 6 / span 2;
+    grid-column: 5 / span 6;
     grid-row: 2 / span 1;
+
 }
 
 
 .default {
-    grid-column: 6 / span 2;
+    grid-column: 5 / span 6;
     grid-row: 2 / span 1;
 }
 
+.inputFields{
+    grid-column: 8 / span 3;
+    padding: 2%;
+}
 
+.inputLabels{
+    grid-column: 5 / span 3;
+    direction: rtl;
+}
 
 .saveButton {
     background-color: rgba(255, 255, 255, 0.8);
@@ -282,3 +292,52 @@ input {
 // 	position:relative;
 // 	top:1px;
 // }
+
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    grid-column: 10 / span 1;
+    //border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    opacity: 0.9;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    top: -100%;
+    right: 100%;
+
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
+// .tooltip .tooltiptext::after {
+//     content: " ";
+//     position: absolute;
+//     top: 50%;
+//     right: 100%; /* To the left of the tooltip */
+//     margin-top: -5px;
+//     border-width: 5px;
+//     border-style: solid;
+//     border-color: transparent black transparent transparent;
+//   }
+
+.fas{
+    color: rgb(106, 106, 177);
+}

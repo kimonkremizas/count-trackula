@@ -71,12 +71,27 @@
         <button class="collapsible"><b>Settings</b></button>
         <div class="content">
           <form id="form">
-            <label for="maximumCustomersInput">Maximum Customers:</label><br>
-            <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required><br>
-            <label for="warningRangeInput">Warning Range:</label><br>
-            <input type="number" id="warningRangeInput" name="warningRangeInput" min="0" required><br>
-            <label for="emailInput">Email:</label><br>
-            <input type="email" id="emailInput" name="emailInput" required><br><br>
+            <label class="inputLabels" for="maximumCustomersInput">Maximum Customers:</label>
+            <input type="number" class="inputFields" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required>
+            <div class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltiptext">Enter the maximum number of people allowed to be inside the store at any point</span>
+            </div>
+            <br>
+            <label class="inputLabels"  for="warningRangeInput">Warning Range:</label>
+            <input type="number"  class="inputFields" id="warningRangeInput" name="warningRangeInput" min="0">
+            <div class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltiptext">This will display a warning when the Current Occupancy reaches the Maximum Occupancy minus this Warning Range (optional)</span>
+            </div>
+            <br>
+            <label class="inputLabels"  for="emailInput">Email:</label>
+            <input type="email"  class="inputFields" id="emailInput" name="emailInput" required>
+            <div class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltiptext">Enter the email where you will be notified</span>
+            </div>
+            <br><br>
 
             <!-- Cookies buttons -->
             <input type="submit" value="Save Settings" id="setCookieButton" />

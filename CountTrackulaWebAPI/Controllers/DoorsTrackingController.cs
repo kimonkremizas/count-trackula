@@ -27,6 +27,16 @@ namespace CountTrackulaWebAPI.Controllers
         List<DoorTrackingOccupancyTime> OccupancyWithTimeList = new List<DoorTrackingOccupancyTime>();
         List<DoorTracking> DoorTrackingList = new List<DoorTracking>();
 
+        public string JsonHighchartsConvert(List<DoorTrackingOccupancyTime> list)
+        {
+            string json = JsonSerializer.Serialize(list);
+            string jsonConverted1 = json.Replace("{", "[");
+            string jsonConverted2 = jsonConverted1.Replace("}", "]");
+            string jsonConverted3 = jsonConverted2.Replace("\"DateTime\":", "");
+            string jsonConverted = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
+            return jsonConverted;
+        }
+
 
         // GET: api/<DoorsTrackingController>
         [HttpGet(Name = "GetAll")]
@@ -54,29 +64,12 @@ namespace CountTrackulaWebAPI.Controllers
                     }
                 }
             }
-            //// local save to json file
-            //string json = System.Text.Json.JsonSerializer.Serialize(OccupancyWithTimeList);
-            //string jsonConverted = json.Replace("{", "[");
-            //string jsonConverted2 = jsonConverted.Replace("}", "]");
-            //string jsonConverted3 = jsonConverted2.Replace("\"DateTime\":", "");
-            //string jsonConverted4 = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
-            //var size = jsonConverted4.Length * sizeof(Char);
 
-            //if (size < 2000000)
-            //{
-            //    string filePath = @".";
-            //    string fileName = @"CountTrackulaWebAPI.json";
-            //    using (StreamWriter outputFile = new StreamWriter(Path.Combine(filePath, fileName)))
-            //    {
-            //        outputFile.Write(jsonConverted4);
-            //    }
-
-            //}
             return DoorTrackingList;
         }
 
-        // GET: api/<DoorsTrackingController>/Highcharts.json
-        [HttpGet("Highcharts.json", Name = "GetAllToJson")]
+        // GET: api/<DoorsTrackingController>/GetAllToJson
+        [HttpGet("GetAllToJson", Name = "GetAllToJson")]
         public string GetAllToJson()
         {
             string selectAll = "select dateTime, occupancy from DoorsTracking";
@@ -99,14 +92,37 @@ namespace CountTrackulaWebAPI.Controllers
                 }
             }
 
-            string json = System.Text.Json.JsonSerializer.Serialize(OccupancyWithTimeList);
-            string jsonConverted = json.Replace("{", "[");
-            string jsonConverted2 = jsonConverted.Replace("}", "]");
-            string jsonConverted3 = jsonConverted2.Replace("\"DateTime\":", "");
-            string jsonConverted4 = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
-            
-            return jsonConverted4;
+            return JsonHighchartsConvert(OccupancyWithTimeList);
         }
+
+        // GET: api/<DoorsTrackingController>/GetTodayToJson
+        [HttpGet("GetTodayToJson", Name = "GetTodayToJson")]
+        public string GetTodayToJson()
+        {
+            string selectAll = "select dateTime, occupancy from DoorsTracking where cast(dateTime as Date) = cast(getdate() as Date)";
+
+            using (SqlConnection databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectAll, databaseConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime dateTime = reader.GetDateTime(0);
+                            int occupancy = reader.GetInt32(1);
+
+                            OccupancyWithTimeList.Add(new DoorTrackingOccupancyTime(dateTime, occupancy));
+                        }
+                    }
+                }
+            }
+
+            return JsonHighchartsConvert(OccupancyWithTimeList);
+        }
+
+
 
 
         // GET api/<DoorsTrackingController>/5

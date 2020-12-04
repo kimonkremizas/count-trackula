@@ -202,21 +202,54 @@ document.addEventListener('DOMContentLoaded', function () {
       type: 'area'
     },
     title: {
-      text: 'Occupancy - All Time'
+      text: 'Occupancy - Today'
     },
     yAxis: {
       title: {
-          text: 'Occupancy'
+        text: 'Occupancy'
+      },
+      plotLines: [{
+        value: +getMaximumCustomersCookie(),
+        color: 'black',
+        width: 3,
+        zIndex: 3,
+        label: {
+          text: 'Maximum Customers',
+          align: 'center',
+          style: {
+            color: 'black'
+          }
+        }
+      },
+      {
+        value: +getMaximumCustomersCookie()-(+getWarningRangeCookie()),
+        color: 'red',
+        width: 4,
+        dashStyle: 'dash',
+        zIndex: 3,
+        label: {
+          text: 'Warning limit',
+          align: 'center',
+          style: {
+            color: 'red'
+          }
+        }
       }
-  },
+    ],
+     
+
+    },
     // subtitle: {
     //   text: 'Data input from a remote JSON file'
     // },
-
+    legend: {
+      enabled: false
+    },
     data: {
       rowsURL: 'https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson',
       firstRowAsNames: false,
-      enablePolling: true
+      enablePolling: true,
+
     }
   });
 });

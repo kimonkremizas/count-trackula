@@ -4,7 +4,7 @@ import { IDoorTracking } from "./IDoorTracking";
 
 // let timeout: any;
 
- let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
+let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
 //let doorTrackingWebUrl: string = "https://localhost:44371/api/DoorsTracking"
 
 
@@ -26,8 +26,8 @@ setInterval(function GetCurrentOccupancy() {
       //console.log("AxiosResponse: ",AxiosResponse);
       //console.log("Status Code: ",AxiosResponse.status);
       getLastContent.innerHTML = AxiosResponse.data.toString();
-      if (getMaximumCustomersCookie() != ""){
-        if (AxiosResponse.data >= +getMaximumCustomersCookie()-(+getWarningRangeCookie())) {
+      if (getMaximumCustomersCookie() != "") {
+        if (AxiosResponse.data >= +getMaximumCustomersCookie() - (+getWarningRangeCookie())) {
           overlayOn();
         }
         else { overlayOff() }
@@ -64,16 +64,16 @@ deleteCookiesButtonOverlay.addEventListener("click", deleteCookies);
 
 //  Cookies
 function setCookie() {
-  setAnyCookie("maximumCustomers",maximumCustomers.value);
-  setAnyCookie("warningRange",warningRange.value);
-  setAnyCookie("email",email.value);
+  setAnyCookie("maximumCustomers", maximumCustomers.value);
+  setAnyCookie("warningRange", warningRange.value);
+  setAnyCookie("email", email.value);
 }
 
-function setAnyCookie(cookieName:string,cookieValue:string) {
+function setAnyCookie(cookieName: string, cookieValue: string) {
   var d = new Date();
   d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
   var expires = "expires=" + d.toUTCString();
-  var cookieString = cookieName +"=" + cookieValue;
+  var cookieString = cookieName + "=" + cookieValue;
   document.cookie = cookieString + ";" + expires + ";path=/";
 }
 
@@ -87,7 +87,7 @@ function getMaximumCustomersCookie() {
   var name = "maximumCustomers=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
+  for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -103,7 +103,7 @@ function getWarningRangeCookie() {
   var name = "warningRange=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
+  for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -121,7 +121,7 @@ function clearTextBoxes() {
   email.value = "";
 }
 
-function deleteCookies(){
+function deleteCookies() {
   document.cookie = "maximumCustomers= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   document.cookie = "warningRange= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
@@ -187,8 +187,35 @@ let overlay: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay")
 overlay.addEventListener("click", overlayOff);
 
 
+// GRAPHS PAGE
+
+var Highcharts = require('highcharts');
+// Load module after Highcharts is loaded
+require('highcharts/modules/exporting')(Highcharts);
+require('highcharts/modules/data')(Highcharts);
 
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  var chart = Highcharts.chart('container', {
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: 'Occupancy - All Time'
+    },
+
+    // subtitle: {
+    //   text: 'Data input from a remote JSON file'
+    // },
+
+    data: {
+      rowsURL: 'https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson',
+      firstRowAsNames: false,
+      enablePolling: true
+    }
+  });
+});
 
 
 // let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
@@ -491,5 +518,3 @@ overlay.addEventListener("click", overlayOff);
 
 //     });
 // });
-
-

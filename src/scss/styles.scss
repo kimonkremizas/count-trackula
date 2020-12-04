@@ -55,7 +55,7 @@ main {
 
 
 footer {
-    grid-row: 10 / span 1;
+    grid-row: 11 / span 1;
     padding: 1rem;
     text-align: center;
 }
@@ -128,7 +128,7 @@ h1 {
 
 #graphsPage {
     font-size: 300%;
-    grid-column: 5 / span 4;
+    grid-column: 5 / span 6;
     grid-row: 1 / span 1;
 }
 
@@ -358,7 +358,7 @@ input {
     z-index: 1;
   }
 
-  .fas fa-info-circle{
+  .fa-info-circle{
     color: rgb(106, 106, 177);
 }
   

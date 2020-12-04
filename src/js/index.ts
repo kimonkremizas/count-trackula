@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
       plotLines: [{
         value: +getMaximumCustomersCookie(),
         color: 'black',
-        width: 3,
+        width: 1,
         zIndex: 3,
         label: {
           text: 'Maximum Customers',
@@ -224,9 +224,9 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         value: +getMaximumCustomersCookie()-(+getWarningRangeCookie()),
         color: 'red',
-        width: 4,
+        width: 1,
         dashStyle: 'dash',
-        zIndex: 3,
+        zIndex: 4,
         label: {
           text: 'Warning limit',
           align: 'center',

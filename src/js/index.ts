@@ -199,7 +199,8 @@ require('highcharts/modules/data')(Highcharts);
 document.addEventListener('DOMContentLoaded', function () {
   var chart = Highcharts.chart('container', {
     chart: {
-      type: 'area'
+      type: 'area',
+      zoomType: 'x'
     },
     title: {
       text: 'Occupancy - Today'

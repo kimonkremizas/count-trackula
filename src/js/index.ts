@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
         label: {
           text: 'Maximum Customers',
           align: 'center',
+          x: -60,
           style: {
             color: 'black'
           }
@@ -231,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
         label: {
           text: 'Warning limit',
           align: 'center',
+          x: 60,
           style: {
             color: 'red'
           }

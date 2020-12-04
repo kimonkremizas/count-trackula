@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       },
       {
-        value: +getMaximumCustomersCookie()-(+getWarningRangeCookie()),
+        value: +getMaximumCustomersCookie() - (+getWarningRangeCookie()),
         color: 'red',
         width: 1,
         dashStyle: 'dash',
@@ -238,8 +238,14 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
       }
-    ],
-     
+      ],
+      plotBands: [{
+        from: +getMaximumCustomersCookie(),
+        to: +getMaximumCustomersCookie() - (+getWarningRangeCookie()),
+        color: 'rgba(255, 255, 0, 0.2)',
+        width: 1
+
+      }]
 
     },
     // subtitle: {

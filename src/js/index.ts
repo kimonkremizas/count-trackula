@@ -204,7 +204,11 @@ document.addEventListener('DOMContentLoaded', function () {
     title: {
       text: 'Occupancy - All Time'
     },
-
+    yAxis: {
+      title: {
+          text: 'Occupancy'
+      }
+  },
     // subtitle: {
     //   text: 'Data input from a remote JSON file'
     // },

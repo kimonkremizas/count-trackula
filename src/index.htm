@@ -36,25 +36,41 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
     </style>
-    
-    </header>
-    <main>
-    
-      <!-- GRAPHS PAGE -->
-      <div class="page" id="graphsPage">
-    
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-        <br>
-        <li>Hover to check specific values</li>
-        <li>Drag horizontally to Zoom</li>
+
+  </header>
+  <main>
+
+    <!-- GRAPHS PAGE -->
+    <div class="page" id="graphsPage">
+
+      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <div id="graphSettings">
+        <div class="ld-row">
+          <label class="ld-label1">
+            Enable auto-refresh
+          </label>
+          <input type="checkbox" checked="checked" id="enablePolling" />
+        </div>
+        <div class="ld-row">
+          <label class="ld-label2">
+            Refresh Time (Seconds)
+          </label>
+          <input class="ld-time-input" type="number" value="2" id="pollingTime" />
+          <li>Hover to check specific values</li>
+          <li>Drag horizontally to Zoom</li>
+        </div>
       </div>
-    
-      <!-- HOME PAGE -->
-      <div class="page default" id="homePage">
-    
-    
-        <div id="OccupancyArea">
-          <p>Current Occupancy</p>
+
+    </div>
+
+    </div>
+
+    <!-- HOME PAGE -->
+    <div class="page default" id="homePage">
+
+
+      <div id="OccupancyArea">
+        <p>Current Occupancy</p>
         <p id="Occupancy" class="OccupancyValue">Loading...</p>
       </div>
 
@@ -80,7 +96,8 @@
             <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required>
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
-              <span class="tooltiptext">Enter the maximum number of people allowed to be inside the store at any point</span>
+              <span class="tooltiptext">Enter the maximum number of people allowed to be inside the store at any
+                point</span>
             </div>
             <br>
 
@@ -88,7 +105,8 @@
             <input type="number" id="warningRangeInput" name="warningRangeInput" min="0">
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
-              <span class="tooltiptext">This will display a warning when the Current Occupancy reaches the Maximum Occupancy minus this Warning Range (optional)</span>
+              <span class="tooltiptext">This will display a warning when the Current Occupancy reaches the Maximum
+                Occupancy minus this Warning Range (optional)</span>
             </div>
             <br>
 
@@ -101,18 +119,19 @@
             <br><br>
 
             <!-- Cookies buttons -->
-            <input type="button" value="Clear Settings" class ="deleteSettingsButtonOverlay" id="deleteCookiesButtonSettings" />
-            <input type="submit" value="Save Settings" class ="saveSettingsButtonOverlay" id="setCookieButton" />        
-           </form>
+            <input type="button" value="Clear Settings" class="deleteSettingsButtonOverlay"
+              id="deleteCookiesButtonSettings" />
+            <input type="submit" value="Save Settings" class="saveSettingsButtonOverlay" id="setCookieButton" />
+          </form>
         </div>
       </div>
     </div>
-    
+
   </main>
 
   <footer>Count Trackula team: Andrei, Ani, Josh, Kimon
-    <input type="button" value="Clear Form" id="clearTextBoxesButton"/>
-    <input type="button" value="Get Cookie" id="getCookieButton"/>
+    <input type="button" value="Clear Form" id="clearTextBoxesButton" />
+    <input type="button" value="Get Cookie" id="getCookieButton" />
   </footer>
 
 
@@ -137,7 +156,7 @@
 
 
 
-  <!-- <button class="collapsible">Settings</button>
+<!-- <button class="collapsible">Settings</button>
    <div class="grid-container">
     <div class="grid-item">Maximum Customers:</div>
     <div class="grid-item">
@@ -163,8 +182,8 @@
 
 
 
-  <!--------------------------------------------------------------------------------------------->
-  <!-- <button id="getAllButton"><b>Show all triggers</b></button>
+<!--------------------------------------------------------------------------------------------->
+<!-- <button id="getAllButton"><b>Show all triggers</b></button>
       <button id="clearGetAllListButton">Clear List</button>
       <div id="getAllContent">
         <ul id="carsContent">
@@ -178,7 +197,7 @@
       </div> -->
 
 
-  <!-- 
+<!-- 
     <br> <br>
 
     <div class="side">
@@ -219,7 +238,7 @@
 
 
 
-  <!-- 
+<!-- 
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -233,7 +252,3 @@
 <div class='static'>
     <div id="container" style="width:700px; height:400px; margin: auto;"></div>
   </div> -->
-
-
-
-

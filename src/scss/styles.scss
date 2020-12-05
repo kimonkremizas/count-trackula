@@ -167,6 +167,7 @@ label{
   width: 180px;
   text-align: right;
   padding: 8px; 
+  font-size: small;
 }
 input{
     display: inline-block;
@@ -385,6 +386,35 @@ input {
 //   }
 
 li{
-    font-size: large;
+    font-size: small;
     text-align: left;
+    font-style: italic;
+    padding: 10px
+}
+
+
+.ld-label1 {
+
+    display: inline-block;
+}
+.ld-label2 {
+
+    display: inline-block;
+}
+
+.ld-time-input {
+    width: auto;
+}
+
+.ld-row{
+    text-align: left;
+    height: auto;
+}
+
+#enablePolling{
+    width: auto;
+}
+
+#graphSettings{
+    background: white;
 }

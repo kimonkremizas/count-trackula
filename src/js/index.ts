@@ -68,6 +68,7 @@ function setCookie() {
   setAnyCookie("warningRange", warningRange.value);
   setAnyCookie("email", email.value);
   alert("Settings saved succesfully.");
+  createChart();
 }
 
 function setAnyCookie(cookieName: string, cookieValue: string) {
@@ -127,6 +128,7 @@ function deleteCookies() {
   document.cookie = "warningRange= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   alert("Settings cleared succesfully.");
+  createChart();
 }
 
 // collapsible start
@@ -168,8 +170,7 @@ function WarningRangeLimit() {
   warningRange.setAttribute("max", (maximumCustomersValue - 1).toString());
 }
 
-maximumCustomers.onchange = WarningRangeLimit;
-warningRange.onchange = WarningRangeLimit;
+maximumCustomers.onchange = warningRange.onchange = WarningRangeLimit;
 
 
 // Overlay
@@ -196,9 +197,12 @@ var Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 require('highcharts/modules/data')(Highcharts);
 
+let pollingCheckbox : HTMLInputElement = <HTMLInputElement> document.getElementById('enablePolling');
+let pollingInput : HTMLInputElement = <HTMLInputElement> document.getElementById('pollingTime');
 
+document.addEventListener('DOMContentLoaded', createChart);
 
-document.addEventListener('DOMContentLoaded', function () {
+function createChart() {
   var chart = Highcharts.chart('container', {
     chart: {
       type: 'area',
@@ -206,6 +210,11 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     title: {
       text: 'Occupancy - Today'
+    },
+    xAxis: {
+      title: {
+        text: 'Time'
+      },
     },
     yAxis: {
       title: {
@@ -259,11 +268,29 @@ document.addEventListener('DOMContentLoaded', function () {
     data: {
       rowsURL: 'https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson',
       firstRowAsNames: false,
-      enablePolling: true,
-
+      enablePolling: pollingCheckbox.checked === true,
+      dataRefreshRate: validatePollingInput()
     }
   });
-});
+
+}
+
+function validatePollingInput() : number {
+  if (+pollingInput.value < 5 || !+pollingInput.value) {
+    pollingInput.value = "5";
+  }
+  return parseInt(pollingInput.value, 10)
+}
+
+// We recreate instead of using chart update to make sure the loaded CSV
+// and such is completely gone.
+pollingCheckbox.onchange = pollingInput.onchange = createChart;
+
+// Create the chart
+createChart();
+
+
+
 
 
 // let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")

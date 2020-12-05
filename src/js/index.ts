@@ -67,6 +67,7 @@ function setCookie() {
   setAnyCookie("maximumCustomers", maximumCustomers.value);
   setAnyCookie("warningRange", warningRange.value);
   setAnyCookie("email", email.value);
+  alert("Settings saved succesfully.");
 }
 
 function setAnyCookie(cookieName: string, cookieValue: string) {
@@ -125,6 +126,7 @@ function deleteCookies() {
   document.cookie = "maximumCustomers= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   document.cookie = "warningRange= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
   document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  alert("Settings cleared succesfully.");
 }
 
 // collapsible start

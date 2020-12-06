@@ -6,11 +6,11 @@ The **Occupancy** item displays the total amount of people that are currentl
 
 Info: The Occupancy is reset to zero every day at 03:00, a time outside the opening hours is preferred, where all the staff have ended their shifts.  
 
--In the Main Page, the user also has the option to tweak the settings of the web app. By pressing the Settings button, the page expands, and the settings section appears. This section the user is shown a list consisting of three items: the *“Maximum Customers”*, *“Warning Range”* and *“Email”*, along with their corresponding input fields.  
+- In the Main Page, the user also has the option to tweak the settings of the web app. By pressing the Settings button, the page expands, and the settings section appears. This section the user is shown a list consisting of three items: the *“Maximum Customers”*, *“Warning Range”* and *“Email”*, along with their corresponding input fields.  
 
--In the **Maximum Customers** field, the user must enter the maximum number of people that are allowed to be inside the store at any point.  
+- In the **Maximum Customers** field, the user must enter the maximum number of people that are allowed to be inside the store at any point.  
 
--In the **Warning Range** field, the user must enter a number that illustrates the difference between the Maximum Customers and the Occupancy number, that the user wants to be warned with a notification. If e.g., the maximum Customers is 32 and the user wants to be notified that the limit is almost reached when the Occupancy reaches 27, he/she then must enter 5 as Warning Range field. This fields allows more flexibility for the users, as different types of stores have different traffic, so tweaking with this value gives the store staff enough time to close the entrance temporarily to new customers.  
+- In the **Warning Range** field, the user must enter a number that illustrates the difference between the Maximum Customers and the Occupancy number, that the user wants to be warned with a notification. If e.g., the maximum Customers is 32 and the user wants to be notified that the limit is almost reached when the Occupancy reaches 27, he/she then must enter 5 as Warning Range field. This fields allows more flexibility for the users, as different types of stores have different traffic, so tweaking with this value gives the store staff enough time to close the entrance temporarily to new customers.  
 
 In the **Email** field, the user must enter an email where they will be notified. 
 

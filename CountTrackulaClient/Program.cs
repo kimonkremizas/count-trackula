@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using CountTrackulaClient.Controllers;
 using CountTrackulaClient.Model;
@@ -23,15 +24,32 @@ namespace CountTrackulaClient
 
 
         /// <summary>
+        /// Method that truncates given datetime to given precision
+        /// </summary>
+        /// <param name="dateTime"> Timestamp you want to truncate </param>
+        /// <param name="timeSpan"> Precision </param>
+        /// <returns></returns>
+        public static DateTime Truncate(DateTime dateTime, TimeSpan timeSpan)
+        {
+            if (timeSpan == TimeSpan.Zero) return dateTime; // Or could throw an ArgumentException
+            if (dateTime == DateTime.MinValue || dateTime == DateTime.MaxValue) return dateTime; // do not modify "guard" values
+            return dateTime.AddTicks(-(dateTime.Ticks % timeSpan.Ticks));
+        }
+
+        /// <summary>
         /// Method that creates a new DB row which resets Occupancy to zero when called.
         /// </summary>
-        static void ResetCounter()
+        public static async void ResetCounter()
         {
             var dateTimeNow = DateTime.Now;
+            dateTimeNow = Truncate(dateTimeNow,TimeSpan.FromMilliseconds(10));
+
+
+
             // Create new DoorTracking object with the newly created properties
             DoorTracking resetDoorTracking = new DoorTracking(dateTimeNow, 0, false);
             // This object is the result of the HTTP POST method that is used in this very line
-            DoorTracking doorTracking = TaskController.AddDoorTrackingAsync(resetDoorTracking).Result;
+            DoorTracking doorTracking = await TaskController.AddDoorTrackingAsync(resetDoorTracking);
         }
 
 
@@ -46,29 +64,33 @@ namespace CountTrackulaClient
             {
                 // Listen to all IPs and ports in the network
                 IPEndPoint remoteEndPoint = new IPEndPoint(0, 0);
+                // RESET TIMER
+                var DailyTime = "00:00:00";
+                var timePartsFirstRun = DailyTime.Split(new char[1] { ':' });
+                var dateFirstRun = DateTime.Now;
+                var nextTaskExecutionDate = new DateTime(dateFirstRun.Year, dateFirstRun.Month, dateFirstRun.Day,
+                    int.Parse(timePartsFirstRun[0]), int.Parse(timePartsFirstRun[1]), int.Parse(timePartsFirstRun[2]));
+                bool shouldIssueTaskToday = true;
 
-                
                 while (true)
-                {
-                    // RESET TIMER
-                    var DailyTime = "00:00:00";
-                    var timeParts = DailyTime.Split(new char[1] { ':' });
-
+                { 
                     var dateNow = DateTime.Now;
-                    var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
-                        int.Parse(timeParts[0]), int.Parse(timeParts[1]), int.Parse(timeParts[2]));
-                    TimeSpan ts;
-                    if (date > dateNow)
-                        ts = date - dateNow;
-                    else
-                    {
-                        date = date.AddDays(1);
-                        ts = date - dateNow; // 3/12/2020 12:00:00 - 2/12/2020 :12:15:00
+                    if (shouldIssueTaskToday)
+                    { 
+                        if (nextTaskExecutionDate > dateNow)
+                        {
+                            TimeSpan ts = nextTaskExecutionDate - dateNow;
+                            //waits certain time and run the code
+                            Task.Delay(ts).ContinueWith((x) => ResetCounter());
+                            shouldIssueTaskToday = false;
+                        }
                     }
-                    //waits certain time and run the code
-                    Task.Delay(ts).ContinueWith((x) => ResetCounter());
+                    else if (nextTaskExecutionDate.Day != dateNow.Day)
+                    {
+                        nextTaskExecutionDate = nextTaskExecutionDate.AddDays(1);
+                        shouldIssueTaskToday = true;
+                    }
 
-                    
                     // Listen to Broadcast
                     Console.WriteLine("Waiting for broadcast {0}", socket.Client.LocalEndPoint);
                     byte[] datagramReceived = socket.Receive(ref remoteEndPoint);

@@ -4,6 +4,19 @@
         <name>CountTrackulaClient</name>
     </assembly>
     <members>
+        <member name="M:CountTrackulaClient.Program.Truncate(System.DateTime,System.TimeSpan)">
+            <summary>
+            Method that truncates given datetime to given precision
+            </summary>
+            <param name="dateTime"> Timestamp you want to truncate </param>
+            <param name="timeSpan"> Precision </param>
+            <returns></returns>
+        </member>
+        <member name="M:CountTrackulaClient.Program.ResetCounter">
+            <summary>
+            Method that creates a new DB row which resets Occupancy to zero when called.
+            </summary>
+        </member>
         <member name="M:CountTrackulaClient.Program.Main(System.String[])">
             <summary>
             Main method that receives broadcast UDP messages and creates new DoorTracking object

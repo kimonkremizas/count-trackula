@@ -418,3 +418,14 @@ li{
 #graphSettings{
     background: white;
 }
+
+.graphButtons{
+    cursor: pointer;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .graphButtons:hover {
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+  }

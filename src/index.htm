@@ -49,7 +49,7 @@
           <label class="ld-label1">
             Enable auto-refresh
           </label>
-          <input type="checkbox" checked="checked" id="enablePolling" />
+          <input type="checkbox" id="enablePolling" />
         </div>
         <div class="ld-row">
           <label class="ld-label2">
@@ -59,11 +59,15 @@
           <li>Hover to check specific values</li>
           <li>Drag horizontally to Zoom</li>
         </div>
-      </div>
-
+      </div id="graphButtonsDiv">
+      <button class="graphButtons" id="GetAllToJsonButton">All</button>
+      <button class="graphButtons" id="GetLastMonthToJsonButton">Month</button>
+      <button class="graphButtons" id="GetLastWeekToJsonButton">Week</button>
+      <button class="graphButtons active" id="GetTodayToJsonButton">Day</button>
+    </div>
     </div>
 
-    </div>
+
 
     <!-- HOME PAGE -->
     <div class="page default" id="homePage">
@@ -111,7 +115,8 @@
             <br>
 
             <label for="emailInput">Email:</label>
-            <input type="email" id="emailInput" name="emailInput" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <input type="email" id="emailInput" name="emailInput" required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
             <div class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltiptext">Enter the email where you will be notified</span>
@@ -122,6 +127,7 @@
             <input type="button" value="Clear Settings" class="deleteSettingsButtonOverlay"
               id="deleteCookiesButtonSettings" />
             <input type="submit" value="Save Settings" class="saveSettingsButtonOverlay" id="setCookieButton" />
+
           </form>
         </div>
       </div>
@@ -132,6 +138,8 @@
   <footer>Count Trackula team: Andrei, Ani, Josh, Kimon
     <input type="button" value="Clear Form" id="clearTextBoxesButton" />
     <input type="button" value="Get Cookie" id="getCookieButton" />
+    <input type="button" value="Send Email" id="sendEmail" />
+
   </footer>
 
 

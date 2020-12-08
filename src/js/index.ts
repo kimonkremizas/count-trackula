@@ -209,7 +209,7 @@ function createChart() {
       zoomType: 'x'
     },
     title: {
-      text: 'Occupancy - Today'
+      text: 'Occupancy'
     },
     xAxis: {
       title: {
@@ -266,7 +266,7 @@ function createChart() {
       enabled: false
     },
     data: {
-      rowsURL: 'https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson',
+      rowsURL: jsonGraphUrl,
       firstRowAsNames: false,
       enablePolling: pollingCheckbox.checked === true,
       dataRefreshRate: validatePollingInput()
@@ -288,6 +288,45 @@ pollingCheckbox.onchange = pollingInput.onchange = createChart;
 
 // Create the chart
 createChart();
+
+
+
+// Graphs buttons
+
+let todayJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson";
+let lastWeekJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekToJson";
+let lastMonthJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastMonthToJson";
+let allJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetAllToJson";
+let jsonGraphUrl: string = todayJsonStringUrl;
+
+
+let GetAllToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetAllToJsonButton");
+let GetLastMonthToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetLastMonthToJsonButton");
+let GetLastWeekToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetLastWeekToJsonButton");
+let GetTodayToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetTodayToJsonButton");
+
+
+GetAllToJsonButton.addEventListener("click", function(){jsonGraphUrl=allJsonStringUrl;createChart();});
+GetLastMonthToJsonButton.addEventListener("click", function(){jsonGraphUrl=lastMonthJsonStringUrl;createChart();});
+GetLastWeekToJsonButton.addEventListener("click", function(){jsonGraphUrl=lastWeekJsonStringUrl;createChart();});
+GetTodayToJsonButton.addEventListener("click", function(){jsonGraphUrl=todayJsonStringUrl;createChart();});
+
+var btns = document.getElementsByClassName("graphButtons");
+for (var i:any = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+
+
+
+
+// MAIL CHIMP
+
+// let sendEmail: HTMLInputElement = <HTMLInputElement>document.getElementById("sendEmail");
+// sendEmail.addEventListener("click", SendEmail);
 
 
 

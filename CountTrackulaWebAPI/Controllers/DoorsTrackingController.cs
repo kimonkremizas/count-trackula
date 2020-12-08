@@ -91,7 +91,7 @@ namespace CountTrackulaWebAPI.Controllers
                     }
                 }
             }
-
+            
             return JsonHighchartsConvert(OccupancyWithTimeList);
         }
 
@@ -122,8 +122,59 @@ namespace CountTrackulaWebAPI.Controllers
             return JsonHighchartsConvert(OccupancyWithTimeList);
         }
 
+        // GET: api/<DoorsTrackingController>/GetLastWeekToJson
+        [HttpGet("GetLastWeekToJson", Name = "GetLastWeekToJson")]
+        public string GetLastWeekToJson()
+        {
+            string selectAll = "select dateTime, occupancy from DoorsTracking where cast(dateTime as Date) >= DATEADD(DAY, -6, cast(getdate() as Date))";
 
+            using (SqlConnection databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectAll, databaseConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime dateTime = reader.GetDateTime(0);
+                            int occupancy = reader.GetInt32(1);
 
+                            OccupancyWithTimeList.Add(new DoorTrackingOccupancyTime(dateTime, occupancy));
+                        }
+                    }
+                }
+            }
+
+            return JsonHighchartsConvert(OccupancyWithTimeList);
+        }
+
+        // GET: api/<DoorsTrackingController>/GetLastMonthToJson
+        [HttpGet("GetLastMonthToJson", Name = "GetLastMonthToJson")]
+        public string GetLastMonthToJson()
+        {
+            string selectAll = "select dateTime, occupancy from DoorsTracking where cast(dateTime as Date) >= DATEADD(DAY, -29, cast(getdate() as Date))";
+
+            using (SqlConnection databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectAll, databaseConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime dateTime = reader.GetDateTime(0);
+                            int occupancy = reader.GetInt32(1);
+
+                            OccupancyWithTimeList.Add(new DoorTrackingOccupancyTime(dateTime, occupancy));
+                        }
+                    }
+                }
+            }
+
+            return JsonHighchartsConvert(OccupancyWithTimeList);
+        }
 
         // GET api/<DoorsTrackingController>/5
         [HttpGet("{id}", Name = "GetById")]

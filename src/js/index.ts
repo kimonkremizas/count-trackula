@@ -202,6 +202,15 @@ let pollingInput : HTMLInputElement = <HTMLInputElement> document.getElementById
 
 document.addEventListener('DOMContentLoaded', createChart);
 
+
+Highcharts.setOptions({
+  time: {
+      timezoneOffset: 1 * 60
+  }
+});
+
+
+
 function createChart() {
   var chart = Highcharts.chart('container', {
     chart: {
@@ -321,9 +330,37 @@ for (var i:any = 0; i < btns.length; i++) {
 }
 
 
+// SENDGRID
+
+// var SendGrid = require('@sendgrid/mail');
 
 
-// MAIL CHIMP
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const msg = {
+//   to: 'k.kremizas@gmail.com',
+//   from: 'real.count.trackula@gmail.com', // Use the email address or domain you verified above
+//   subject: 'Sending with Twilio SendGrid is Fun',
+//   text: 'and easy to do anywhere, even with Node.js',
+//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// };
+// //ES6
+// sgMail
+//   .send(msg)
+//   .then(() => {
+//     console.log('Email sent')
+//   })
+  // .catch((error) => {
+  //   console.error(error)
+  // })
+
+
+
+
+
+
+
+
 
 // let sendEmail: HTMLInputElement = <HTMLInputElement>document.getElementById("sendEmail");
 // sendEmail.addEventListener("click", SendEmail);

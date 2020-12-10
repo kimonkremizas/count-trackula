@@ -25,9 +25,11 @@ namespace CountTrackulaWebAPI.Controllers
         //static string connStorage = "DefaultEndpointsProtocol=https;AccountName=counttrackula;AccountKey=gH+ZupWcZG77VaQLb23Pjt6t2z22b0G9xJ3MM5XFfILCn43M0+DIjT5aTPQS/cAVpLYHFyXIJcOGlhyHIxi4bg==;EndpointSuffix=core.windows.net";
 
         List<DoorTrackingOccupancyTime> OccupancyWithTimeList = new List<DoorTrackingOccupancyTime>();
+        List<DoorTrackingDailyEntered> DailyEnteredList = new List<DoorTrackingDailyEntered>();
         List<DoorTracking> DoorTrackingList = new List<DoorTracking>();
 
-        public string JsonHighchartsConvert(List<DoorTrackingOccupancyTime> list)
+
+        public string JsonHighchartsAreaConvert(List<DoorTrackingOccupancyTime> list)
         {
             string json = JsonSerializer.Serialize(list);
             string jsonConverted1 = json.Replace("{", "[");
@@ -36,6 +38,18 @@ namespace CountTrackulaWebAPI.Controllers
             string jsonConverted = jsonConverted3.Replace("\",\"Occupancy\":", "Z\",");
             return jsonConverted;
         }
+
+        public string JsonHighchartsHistogramConvert(List<DoorTrackingDailyEntered> list)
+        {
+            string json = JsonSerializer.Serialize(list);
+            string jsonConverted1 = json.Replace("{", "[");
+            string jsonConverted2 = jsonConverted1.Replace("}", "]");
+            string jsonConverted3 = jsonConverted2.Replace("\"Day\":", "");
+            string jsonConverted = jsonConverted3.Replace("\"CustomersEntered\":", "");
+            return jsonConverted;
+        }
+
+
 
 
         // GET: api/<DoorsTrackingController>
@@ -92,7 +106,7 @@ namespace CountTrackulaWebAPI.Controllers
                 }
             }
             
-            return JsonHighchartsConvert(OccupancyWithTimeList);
+            return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
 
         // GET: api/<DoorsTrackingController>/GetTodayToJson
@@ -119,7 +133,7 @@ namespace CountTrackulaWebAPI.Controllers
                 }
             }
 
-            return JsonHighchartsConvert(OccupancyWithTimeList);
+            return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
 
         // GET: api/<DoorsTrackingController>/GetLastWeekToJson
@@ -146,7 +160,7 @@ namespace CountTrackulaWebAPI.Controllers
                 }
             }
 
-            return JsonHighchartsConvert(OccupancyWithTimeList);
+            return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
 
         // GET: api/<DoorsTrackingController>/GetLastMonthToJson
@@ -173,8 +187,39 @@ namespace CountTrackulaWebAPI.Controllers
                 }
             }
 
-            return JsonHighchartsConvert(OccupancyWithTimeList);
+            return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
+
+
+        // GET: api/<DoorsTrackingController>/GetLastWeekEntranceToJson
+        [HttpGet("GetLastWeekEntranceToJson", Name = "GetLastWeekEntranceToJson")]
+        public string GetLastWeekEntranceToJson()
+        {
+            string selectAll = "select convert(varchar,cast(dateTime as Date),107) + ' ('+ DATENAME(WEEKDAY, cast(dateTime as Date)) + ')'as Day, count(id) as CustomersEntered from DoorsTracking where cast(dateTime as Date) >= DATEADD(DAY, -6, cast(getdate() as Date)) and IsEntrance=1 group by cast(dateTime as Date) order by Day";
+
+            using (SqlConnection databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectAll, databaseConnection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string day = reader.GetString(0);
+                            int customersEntered = reader.GetInt32(1);
+
+                            DailyEnteredList.Add(new DoorTrackingDailyEntered(day, customersEntered));
+                        }
+                    }
+                }
+            }
+
+            return JsonHighchartsHistogramConvert(DailyEnteredList);
+        }
+
+
+
 
         // GET api/<DoorsTrackingController>/5
         [HttpGet("{id}", Name = "GetById")]

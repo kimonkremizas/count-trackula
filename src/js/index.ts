@@ -1,22 +1,11 @@
 import axios, { AxiosResponse, AxiosError } from "../../node_modules/axios/index";
 import { IDoorTracking } from "./IDoorTracking";
-
-
-// let timeout: any;
+import { DateTime } from "luxon";
+import  {getMaximumCustomersCookie} from "./cookies";
+import  {getWarningRangeCookie} from "./cookies";
+import getWeatherWidget from "./weather";
 
 let doorTrackingWebUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
-//let doorTrackingWebUrl: string = "https://localhost:44371/api/DoorsTracking"
-
-
-// let homeButton: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("homeButton")
-// homeButton.addEventListener("click", ShowHomePage);
-// let graphsButton: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("graphsButton")
-// graphsButton.addEventListener("click", ShowGraphsPage);
-
-// function ShowHomePage(){
-
-// }
-
 
 let getLastContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("Occupancy");
 
@@ -29,6 +18,7 @@ setInterval(function GetCurrentOccupancy() {
       if (getMaximumCustomersCookie() != "") {
         if (AxiosResponse.data >= +getMaximumCustomersCookie() - (+getWarningRangeCookie())) {
           overlayOn();
+          //sendEmail();
         }
         else { overlayOff() }
       }
@@ -38,140 +28,7 @@ setInterval(function GetCurrentOccupancy() {
       let errorMessage = "Error Code: " + error.response.status;
       console.log(errorMessage);
     })
-}, 3000);//run this thang every 3 seconds
-
-
-
-let maximumCustomers: HTMLInputElement = <HTMLInputElement>document.getElementById("maximumCustomersInput");
-let warningRange: HTMLInputElement = <HTMLInputElement>document.getElementById("warningRangeInput");
-let email: HTMLInputElement = <HTMLInputElement>document.getElementById("emailInput");
-
-let maximumCustomersValue = maximumCustomers.value;
-let warningRangeValue = warningRange.value;
-let emailValue = email.value;
-
-let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
-setCookieButton.addEventListener("click", setCookie);
-let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
-getCookieButton.addEventListener("click", getCookie);
-let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
-clearTextBoxesButton.addEventListener("click", clearTextBoxes);
-let deleteCookiesButtonSettings: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonSettings")
-deleteCookiesButtonSettings.addEventListener("click", deleteCookies);
-let deleteCookiesButtonOverlay: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonOverlay")
-deleteCookiesButtonOverlay.addEventListener("click", deleteCookies);
-
-
-//  Cookies
-function setCookie() {
-  setAnyCookie("maximumCustomers", maximumCustomers.value);
-  setAnyCookie("warningRange", warningRange.value);
-  setAnyCookie("email", email.value);
-  alert("Settings saved succesfully.");
-  createChart();
-}
-
-function setAnyCookie(cookieName: string, cookieValue: string) {
-  var d = new Date();
-  d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toUTCString();
-  var cookieString = cookieName + "=" + cookieValue;
-  document.cookie = cookieString + ";" + expires + ";path=/";
-}
-
-
-function getCookie() {
-  alert(document.cookie);
-}
-
-
-function getMaximumCustomersCookie() {
-  var name = "maximumCustomers=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function getWarningRangeCookie() {
-  var name = "warningRange=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function clearTextBoxes() {
-  maximumCustomers.value = "";
-  warningRange.value = "";
-  email.value = "";
-}
-
-function deleteCookies() {
-  document.cookie = "maximumCustomers= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-  document.cookie = "warningRange= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-  document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-  alert("Settings cleared succesfully.");
-  createChart();
-}
-
-// collapsible start
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  });
-}
-// collapsible end
-
-
-
-
-// console.log(maximumCustomersValue);
-// console.log(warningRangeValue);
-// console.log(emailValue);
-
-let saveSettingsButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveSettingsButton")
-//saveSettingsButton.addEventListener("click", SaveSettings);
-
-let maximumCustomersContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("maximumCustomersContent");
-let warningRangeContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("warningRangeContent");
-let emailContent: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("emailContent");
-
-
-// Check if Warning Range is smaller than Maximum Customers
-
-function WarningRangeLimit() {
-  let maximumCustomersValue: number = +maximumCustomers.value;
-  warningRange.setAttribute("max", (maximumCustomersValue - 1).toString());
-}
-
-maximumCustomers.onchange = warningRange.onchange = WarningRangeLimit;
-
+}, 3000);//run  every 3 seconds
 
 // Overlay
 
@@ -192,143 +49,124 @@ overlay.addEventListener("click", overlayOff);
 
 // GRAPHS PAGE
 
-var Highcharts = require('highcharts');
-// Load module after Highcharts is loaded
-require('highcharts/modules/exporting')(Highcharts);
-require('highcharts/modules/data')(Highcharts);
 
-let pollingCheckbox : HTMLInputElement = <HTMLInputElement> document.getElementById('enablePolling');
-let pollingInput : HTMLInputElement = <HTMLInputElement> document.getElementById('pollingTime');
+// Use Weather API
 
-document.addEventListener('DOMContentLoaded', createChart);
-
-
-Highcharts.setOptions({
-  time: {
-      timezoneOffset: 1 * 60
-  }
-});
+getWeatherWidget();
 
 
 
-function createChart() {
-  var chart = Highcharts.chart('container', {
-    chart: {
-      type: 'area',
-      zoomType: 'x'
-    },
-    title: {
-      text: 'Occupancy'
-    },
-    xAxis: {
-      title: {
-        text: 'Time'
-      },
-    },
-    yAxis: {
-      title: {
-        text: 'Occupancy'
-      },
-      plotLines: [{
-        value: +getMaximumCustomersCookie(),
-        color: 'black',
-        width: 1,
-        zIndex: 3,
-        label: {
-          text: 'Maximum Customers',
-          align: 'center',
-          x: -60,
-          style: {
-            color: 'black'
-          }
-        }
-      },
-      {
-        value: +getMaximumCustomersCookie() - (+getWarningRangeCookie()),
-        color: 'red',
-        width: 1,
-        dashStyle: 'dash',
-        zIndex: 4,
-        label: {
-          text: 'Warning limit',
-          align: 'center',
-          x: 60,
-          style: {
-            color: 'red'
-          }
-        }
-      }
-      ],
-      plotBands: [{
-        from: +getMaximumCustomersCookie(),
-        to: +getMaximumCustomersCookie() - (+getWarningRangeCookie()),
-        color: 'rgba(255, 255, 0, 0.2)',
-        width: 1
+// NODEMAILER 
 
-      }]
-
-    },
-    // subtitle: {
-    //   text: 'Data input from a remote JSON file'
-    // },
-    legend: {
-      enabled: false
-    },
-    data: {
-      rowsURL: jsonGraphUrl,
-      firstRowAsNames: false,
-      enablePolling: pollingCheckbox.checked === true,
-      dataRefreshRate: validatePollingInput()
-    }
-  });
-
-}
-
-function validatePollingInput() : number {
-  if (+pollingInput.value < 5 || !+pollingInput.value) {
-    pollingInput.value = "5";
-  }
-  return parseInt(pollingInput.value, 10)
-}
-
-// We recreate instead of using chart update to make sure the loaded CSV
-// and such is completely gone.
-pollingCheckbox.onchange = pollingInput.onchange = createChart;
-
-// Create the chart
-createChart();
+let sendEmailButton: HTMLInputElement = <HTMLInputElement> document.getElementById("sendEmailButton");
+// sendEmailButton.addEventListener("click", sendEmail);
 
 
 
-// Graphs buttons
-
-let todayJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson";
-let lastWeekJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekToJson";
-let lastMonthJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastMonthToJson";
-let allJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetAllToJson";
-let jsonGraphUrl: string = todayJsonStringUrl;
+// COMMENTS TO BE REMOVED!!!!
 
 
-let GetAllToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetAllToJsonButton");
-let GetLastMonthToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetLastMonthToJsonButton");
-let GetLastWeekToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetLastWeekToJsonButton");
-let GetTodayToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetTodayToJsonButton");
 
 
-GetAllToJsonButton.addEventListener("click", function(){jsonGraphUrl=allJsonStringUrl;createChart();});
-GetLastMonthToJsonButton.addEventListener("click", function(){jsonGraphUrl=lastMonthJsonStringUrl;createChart();});
-GetLastWeekToJsonButton.addEventListener("click", function(){jsonGraphUrl=lastWeekJsonStringUrl;createChart();});
-GetTodayToJsonButton.addEventListener("click", function(){jsonGraphUrl=todayJsonStringUrl;createChart();});
 
-var btns = document.getElementsByClassName("graphButtons");
-for (var i:any = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//document.getElementById('forecastDay2').innerHTML = DateTime.fromSeconds(AxiosResponse.data.daily[1].dt).weekdayLong.toString();
+
+
+//     public get weekdayLong: stringsource
+// Get the human readable long weekday, such as 'Monday'. Defaults to the system's locale if no locale has been specified
+
+// Example:
+// DateTime.local(2017, 10, 30).weekdayLong //=> Monday
+
+// console.log("CONVERTED TIME:",DateTime.fromSeconds(1607498810).toISO());
+// let weatherUrl: string ="http://openweathermap.org/img/wn/01d@2x.png"
+// let weatherIcon = document.getElementById('weatherIcon')
+// weatherIcon.setAttribute("src",weatherUrl);
+
+
+
+//3563b84c8d5badda0ca2c441bb96f22545c3c436
+
+
+// Nodemailer
+// require('dotenv').config();
+// const nodemailer = require('nodemailer');
+
+
+// // Step 1
+
+// let transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     // user: process.env.EMAIL,
+//     // pass: process.env.PASSWORD
+//     user: 'real.count.trackula@gmail.com',
+//     pass: 'Zealand2020'
+//   }
+// });
+
+// // Step 2
+// let mailOptions ={
+//   from: 'real.count.trackula@gmail.com',
+//   to: 'k.kremizas@gmail.com',
+//   subject: 'Test subject',
+//   text: 'Test text'
+// };
+
+// // Step 3
+
+// function sendEmail(){
+//   transporter.sendMail(mailOptions, function(err: any, data: any){
+//   if (err) {
+//     console.log('Errror occurs', err);
+//   }
+//   else{
+//     console.log('Email sent!!!')
+//   }
+// });
+// }
+
+
+
+// let sendEmailButton: HTMLInputElement = <HTMLInputElement> document.getElementById("sendEmailButton");
+// sendEmailButton.addEventListener("click", sendEmail);
 
 // SENDGRID
 
@@ -362,8 +200,7 @@ for (var i:any = 0; i < btns.length; i++) {
 
 
 
-// let sendEmail: HTMLInputElement = <HTMLInputElement>document.getElementById("sendEmail");
-// sendEmail.addEventListener("click", SendEmail);
+
 
 
 
@@ -602,70 +439,6 @@ for (var i:any = 0; i < btns.length; i++) {
 
 
 
-// var Highcharts = require('highcharts');  
-// // Load module after Highcharts is loaded
-// require('highcharts/modules/exporting')(Highcharts); 
 
 
 
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     var chart = Highcharts.chart('container', {
-//         chart: {
-//             type: 'area'
-//         },
-//         title: {
-//             text: 'Live Data (Rows JSON)'
-//         },
-
-//         subtitle: {
-//             text: 'Data input from a remote JSON file'
-//         },
-//         series: [{
-//             name: 'USA',
-//             data: {
-//             rowsURL: 'https://demo-live-data.highcharts.com/time-rows.json',
-//             firstRowAsNames: false,
-//             enablePolling: true
-//              }
-//             }]
-
-//     });
-// });
-
-
-
-
-
-
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     var chart = Highcharts.chart('container', {
-//         chart: {
-//             type: 'area'
-//         },
-//         title: {
-//             text: 'Live Data (Rows JSON)'
-//         },
-
-//         subtitle: {
-//             text: 'Data input from a remote JSON file'
-//         },
-//         series: [{
-//             name: 'USA',
-//             data: [
-//                 null, null, null, null, null, 6, 11, 32, 110, 235,
-//                 369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-//                 20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-//                 26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-//                 24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-//                 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-//                 10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-//                 5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-//                 ]
-//             }]
-
-//     });
-// });

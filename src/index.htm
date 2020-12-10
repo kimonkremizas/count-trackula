@@ -73,9 +73,61 @@
     <div class="page default" id="homePage">
 
 
+
+
       <div id="OccupancyArea">
         <p>Current Occupancy</p>
         <p id="Occupancy" class="OccupancyValue">Loading...</p>
+      </div>
+
+      <div id="weatherWidget">
+        <div class="CurrentDay">
+          <div class="currentWeatherTimeAndCity">
+            <div id="city"><i>Copenhagen</i></div>
+            <!-- <div id="currentTime"></div> -->
+          </div>
+          <div id="currentWeather"></div>
+          <div id="currentTemp"></div>
+          <img id="currentWeatherIcon">
+        </div>
+        <div class="forecast-row">
+          <div class="forecastDays" id="Day1">
+            <div id="forecastDay1"></div>
+            <img id="forecastWeatherIconDay1">
+            <div id="forecastMaxTempDay1"></div>
+            <div id="forecastMinTempDay1"></div>
+          </div>
+          <div class="forecastDays" id="Day2">
+            <div id="forecastDay2"></div>
+            <img id="forecastWeatherIconDay2">
+            <div id="forecastMaxTempDay2"></div>
+            <div id="forecastMinTempDay2"></div>
+          </div>
+          <div class="forecastDays" id="Day3">
+            <div id="forecastDay3"></div>
+            <img id="forecastWeatherIconDay3">
+            <div id="forecastMaxTempDay3"></div>
+            <div id="forecastMinTempDay3"></div>
+          </div>
+          <div class="forecastDays" id="Day4">
+            <div id="forecastDay4"></div>
+            <img id="forecastWeatherIconDay4">
+            <div id="forecastMaxTempDay4"></div>
+            <div id="forecastMinTempDay4"></div>
+          </div>
+          <div class="forecastDays" id="Day5">
+            <div id="forecastDay5"></div>
+            <img id="forecastWeatherIconDay5">
+            <div id="forecastMaxTempDay5"></div>
+            <div id="forecastMinTempDay5"></div>
+          </div>
+          <div class="forecastDays" id="Day6">
+            <div id="forecastDay6"></div>
+            <img id="forecastWeatherIconDay6">
+            <div id="forecastMaxTempDay6"></div>
+            <div id="forecastMinTempDay6"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Overlay -->
@@ -138,7 +190,7 @@
   <footer>Count Trackula team: Andrei, Ani, Josh, Kimon
     <input type="button" value="Clear Form" id="clearTextBoxesButton" />
     <input type="button" value="Get Cookie" id="getCookieButton" />
-    <input type="button" value="Send Email" id="sendEmail" />
+    <input type="button" value="Send Email" id="sendEmailButton" />
 
   </footer>
 

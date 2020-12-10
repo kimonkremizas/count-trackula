@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 using Azure.Storage.Blobs;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
+using RestSharp;
+using RestSharp.Authenticators;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +23,7 @@ namespace CountTrackulaWebAPI.Controllers
     [ApiController]
     public class DoorsTrackingController : ControllerBase
     {
+
         static string conn = "Server=tcp:3rdsemesterserver.database.windows.net,1433;Initial Catalog=CountTrackulaDB;Persist Security Info=False;User ID=werty89;Password=Machinehead1989;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         //static string connStorage = "DefaultEndpointsProtocol=https;AccountName=counttrackula;AccountKey=gH+ZupWcZG77VaQLb23Pjt6t2z22b0G9xJ3MM5XFfILCn43M0+DIjT5aTPQS/cAVpLYHFyXIJcOGlhyHIxi4bg==;EndpointSuffix=core.windows.net";
 
@@ -109,6 +112,36 @@ namespace CountTrackulaWebAPI.Controllers
             return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
 
+
+        // GET: api/<DoorsTrackingController>/WarningEmail
+        [HttpPost("WarningEmail", Name = "WarningEmail")]
+        public string WarningEmail([FromBody] string email)
+        {
+            static IRestResponse SendSimpleMessage(string email)
+            {
+                RestClient client = new RestClient();
+                client.BaseUrl = new Uri("https://api.mailgun.net/v3");
+                client.Authenticator =
+                    new HttpBasicAuthenticator("api",
+                        "f49ead234ca881dd943986717061f71b-4879ff27-3c22eea2");
+                RestRequest request = new RestRequest();
+                request.AddParameter("domain", "sandbox4bbd9852e9914895b4fa88d1fabd4cda.mailgun.org", ParameterType.UrlSegment);
+                request.Resource = "{domain}/messages";
+                request.AddParameter("from", "real.count.trackula@gmail.com");
+                request.AddParameter("to", email);
+                request.AddParameter("subject", "Maximum Limit reached!");
+                request.AddParameter("text", "Consider closing the entrance :)");
+                request.Method = Method.POST;
+                return client.Execute(request);
+            }
+            //SendSimpleMessage();
+            return SendSimpleMessage(email).Content.ToString();
+        }
+
+
+
+
+
         // GET: api/<DoorsTrackingController>/GetTodayToJson
         [HttpGet("GetTodayToJson", Name = "GetTodayToJson")]
         public string GetTodayToJson()
@@ -132,7 +165,6 @@ namespace CountTrackulaWebAPI.Controllers
                     }
                 }
             }
-
             return JsonHighchartsAreaConvert(OccupancyWithTimeList);
         }
 

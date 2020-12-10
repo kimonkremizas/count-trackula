@@ -12,7 +12,7 @@ In the Main Page, the user also has the option to tweak the settings of the web 
 
 - In the **Warning Range** field, the user must enter a number that illustrates the difference between the Maximum Customers and the Occupancy number, that the user wants to be warned with a notification. If e.g., the maximum Customers is 32 and the user wants to be notified that the limit is almost reached when the Occupancy reaches 27, he/she then must enter 5 as Warning Range field. This fields allows more flexibility for the users, as different types of stores have different traffic, so tweaking with this value gives the store staff enough time to close the entrance temporarily to new customers.  
 
-- In the **Email** field, the user must enter an email where they will be notified. 
+- In the **Email** field, the user must enter an email where they will be notified. Please contact Kimon Kremyzas to add your email in the Mailgun's verified recipent list, so that the email notification is actually sent.
 
 As soon as the settings fields are filled, the user can press the *Save Settings* button, the settings are saved, and the Settings section is hidden automatically.  
 

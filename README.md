@@ -1,47 +1,27 @@
-# Simpel frontend som kalder en restfull webservice
-Dette projekt bruger axios til at kalde en webservice i Azure via HTTP
+# Frontend of CountTrackula
 
-restservicen kan også findes her på GitHub https://github.com/MartinKierkegaard/WebApiCar
+Web App of CountTrackula that is already published at https://counttrackula.github.io/
 
-### Author
-Martin Kierkegaard
+Remember to run command ```npm install``` before ```npm run watch``` so that all required libraries are installed.
 
-# Webpack - TypeScript - SCSS
-this project is a beginner-friendly introduction to Webpack, Type Script and SCSS.
-This includes a simple webpack configuration including TypeScript and SCSS transporation
+# Count Trackula web app
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+When the user visits the web page, he is introduced to the **Main Page**. In the Main Page the user is shown the "Occupancy", along with its corresponding value.   
 
-### Prerequisites
-You need a recent installation of Node on your computer... and git if you want to clone the project
+The **Occupancy** item displays the total amount of people that are currently inside the store. This number is of major concern for the user.  
 
-### Installing
-You can either download this project or clone it from github: yo ucan use this command to clone it and give it a new name
-(replace "fancy project" with your own name...)
-```console
-git clone https://github.com/dimselab/Webpack-template new-fancy-project-based-on-the-webpack-template
-```
+Info: The Occupancy is reset to zero every day at 03:00, a time outside the opening hours is preferred, where all the staff have ended their shifts.  
 
-move into your newly created folder and install all dependencies (node modules)
-```console
-npm install
-```
+In the Main Page, the user also has the option to tweak the settings of the web app. By pressing the Settings button, the page expands, and the settings section appears. This section the user is shown a list consisting of three items: the *“Maximum Customers”*, *“Warning Range”* and *“Email”*, along with their corresponding input fields.  
 
-### Start Developing
-You run the project example in the src folder
-```console
-npm run watch
-```
-Your browser should no show the index.htm and automatically refresh when you do changes in the src folder.
-Remember that your src files are automatically transpiles and or copied to the dist folder and then showed from there
+- In the **Maximum Customers** field, the user must enter the maximum number of people that are allowed to be inside the store at any point.  
 
-### Deployment
-When your project is ready for deployment you should use webpack in production mode by writing this in the console
-```console
-npm run webpack:prod
-```
-That will minify your code and make is production ready
+- In the **Warning Range** field, the user must enter a number that illustrates the difference between the Maximum Customers and the Occupancy number, that the user wants to be warned with a notification. If e.g., the maximum Customers is 32 and the user wants to be notified that the limit is almost reached when the Occupancy reaches 27, he/she then must enter 5 as Warning Range field. This fields allows more flexibility for the users, as different types of stores have different traffic, so tweaking with this value gives the store staff enough time to close the entrance temporarily to new customers.  
 
-### Author
-Ebbe Vang
+- In the **Email** field, the user must enter an email where they will be notified. Please contact k.kremizas@gmail.com to add your email in the Mailgun's verified recipent list, so that the email notification is actually sent.
+
+As soon as the settings fields are filled, the user can press the *Save Settings* button, the settings are saved, and the Settings section is hidden automatically.  
+
+The user can also navigate through the different pages of the app using the *navigation bar* on the left. By pressing the *Home button*, the user is returned to the Main Page and by pressing the *Graph button* the user is introduced to the Graph Page. 
+In the **Graph Page**, a representation of the number of customers coming in the store through the time is displayed in a form of a histogram. The data that are represented here are collected throughout all the days of use of the device, including the current day. The histogram is dynamic as the horizontal time axis range can be changed with the use of the buttons on the bottom of the page. The available options for time ranges are: Day, Week, Month and All.  
+

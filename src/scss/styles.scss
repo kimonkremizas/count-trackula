@@ -169,7 +169,8 @@ grid-template-columns: repeat(3, 1fr);
     transition: max-height 0.5s ease-out;
 }
 label{
-display: inline-block;  
+display: inline-block;
+width: 180px;  
   text-align: right;
   padding: 8px; 
   font-size: small;

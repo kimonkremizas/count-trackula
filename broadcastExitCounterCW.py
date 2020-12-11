@@ -3,7 +3,7 @@ import time
 from socket import *
 from sense_hat import SenseHat
 
-BROADCAST_TO_PORT = 7000
+BROADCAST_TO_PORT = 57054
 s = socket(AF_INET, SOCK_DGRAM)
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 

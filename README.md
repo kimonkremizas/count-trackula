@@ -10,7 +10,7 @@ When the user visits the web page, he is introduced to the **Main Page**. In t
 
 The **Occupancy** item displays the total amount of people that are currently inside the store. This number is of major concern for the user.  
 
-Info: The Occupancy is reset to zero every day at 03:00, a time outside the opening hours is preferred, where all the staff have ended their shifts.  
+Info: The Occupancy is reset to zero every day at 00:00, a time outside the opening hours is preferred, where all the staff have ended their shifts.  
 
 In the Main Page, the user also has the option to tweak the settings of the web app. By pressing the Settings button, the page expands, and the settings section appears. This section the user is shown a list consisting of three items: the *“Maximum Customers”*, *“Warning Range”* and *“Email”*, along with their corresponding input fields.  
 

@@ -31,13 +31,13 @@ export default function getWeatherWidget(){
       // Load Current Weather name
       document.getElementById('currentWeather').innerHTML = AxiosResponse.data.current.weather[0].main;
       // Load Weather icons
-      document.getElementById('currentWeatherIcon').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.current.weather[0].icon + "@2x.png");
-      document.getElementById('forecastWeatherIconDay1').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[0].weather[0].icon + ".png");
-      document.getElementById('forecastWeatherIconDay2').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[1].weather[0].icon + ".png");
-      document.getElementById('forecastWeatherIconDay3').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[2].weather[0].icon + ".png");
-      document.getElementById('forecastWeatherIconDay4').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[3].weather[0].icon + ".png");
-      document.getElementById('forecastWeatherIconDay5').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[4].weather[0].icon + ".png");
-      document.getElementById('forecastWeatherIconDay6').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[5].weather[0].icon + ".png");
+      document.getElementById('currentWeatherIcon').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.current.weather[0].icon + "@2x.png");
+      document.getElementById('forecastWeatherIconDay1').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[0].weather[0].icon + ".png");
+      document.getElementById('forecastWeatherIconDay2').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[1].weather[0].icon + ".png");
+      document.getElementById('forecastWeatherIconDay3').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[2].weather[0].icon + ".png");
+      document.getElementById('forecastWeatherIconDay4').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[3].weather[0].icon + ".png");
+      document.getElementById('forecastWeatherIconDay5').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[4].weather[0].icon + ".png");
+      document.getElementById('forecastWeatherIconDay6').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[5].weather[0].icon + ".png");
       // Load Days
       document.getElementById('forecastDay1').innerHTML = DateTime.fromSeconds(AxiosResponse.data.daily[0].dt).weekdayLong.toString();
       document.getElementById('forecastDay2').innerHTML = DateTime.fromSeconds(AxiosResponse.data.daily[1].dt).weekdayLong.toString();

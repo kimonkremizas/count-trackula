@@ -22,6 +22,6 @@ In the Main Page, the user also has the option to tweak the settings of the web 
 
 As soon as the settings fields are filled, the user can press the *Save Settings* button, the settings are saved, and the Settings section is hidden automatically.  
 
-The user can also navigate through the different pages of the app using the *navigation bar* on the left. By pressing the *Home button*, the user is returned to the Main Page and by pressing the *Graph button* the user is introduced to the Graph Page. 
-In the **Graph Page**, a representation of the number of customers coming in the store through the time is displayed in a form of a histogram. The data that are represented here are collected throughout all the days of use of the device, including the current day. The histogram is dynamic as the horizontal time axis range can be changed with the use of the buttons on the bottom of the page. The available options for time ranges are: Day, Week, Month and All.  
+The user can also navigate through the different pages of the app using the *navigation bar* on the top. By pressing the *Home button*, the user is returned to the Main Page and by pressing the *Graph button* the user is introduced to the Graph Page. 
+In the **Graph Page**, a representation of the occupancy through the time is displayed in an area graph and  the daily customers of the last week in a histogram. The data that are represented here are collected throughout all the days of use of the device, including the current day. The histogram is dynamic as the horizontal time axis range can be changed with the use of the buttons on the bottom of the page. The available options for time ranges of the Area graph are: Day, Week, Month and All.  
 

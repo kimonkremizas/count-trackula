@@ -16,7 +16,7 @@ namespace CountTrackulaClient
     internal class Program
     {
         // Specify the Port used
-        private const int Port = 7000;
+        private const int Port = 57054;
         // Initialize dateTimeLine variable
         static string dateTimeLine = "";
         // Initialize isEntranceLine variable

@@ -1,7 +1,9 @@
 # CountTrackulaUDPBroadcast
 
+Here is an image of our a Raspberry Pi with SenseHAT on a physical prototype of a door used for testing purposes.
 ![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/CountTrackulaUDPBroadcast/blob/master/pidoor.jpg)
 
+During first-time installation:
 - Run **broadcastEntranceCW.py** after you set up the Raspberry Pi with the SenseHAT in an Entrance door that opens clockwise.
 - Run **broadcastEntranceCounterCW.py** after you set up the Raspberry Pi with the SenseHAT in an Entrance door that opens counter-clockwise.
 - Run **broadcastExitCW.py** after you set up the Raspberry Pi with the SenseHAT in an Exit door that opens clockwise.

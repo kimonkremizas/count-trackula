@@ -11,10 +11,10 @@ let emailValue = email.value;
 
 let setCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("setCookieButton")
 setCookieButton.addEventListener("click", setCookie);
-let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
-getCookieButton.addEventListener("click", getCookie);
-let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
-clearTextBoxesButton.addEventListener("click", clearTextBoxes);
+// let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
+// getCookieButton.addEventListener("click", getCookie);
+// let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
+// clearTextBoxesButton.addEventListener("click", clearTextBoxes);
 let deleteCookiesButtonSettings: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonSettings")
 deleteCookiesButtonSettings.addEventListener("click", deleteCookies);
 let deleteCookiesButtonOverlay: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteCookiesButtonOverlay")

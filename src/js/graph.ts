@@ -1,5 +1,5 @@
-import  {getMaximumCustomersCookie} from "./cookies";
-import  {getWarningRangeCookie} from "./cookies";
+import { getMaximumCustomersCookie } from "./cookies";
+import { getWarningRangeCookie } from "./cookies";
 
 
 var Highcharts = require('highcharts');
@@ -10,7 +10,7 @@ require('highcharts/modules/data')(Highcharts);
 let pollingCheckbox: HTMLInputElement = <HTMLInputElement>document.getElementById('enablePolling');
 let pollingInput: HTMLInputElement = <HTMLInputElement>document.getElementById('pollingTime');
 
-document.addEventListener('DOMContentLoaded', createChart);
+document.addEventListener('DOMContentLoaded', createAreaChart);
 
 
 Highcharts.setOptions({
@@ -21,8 +21,8 @@ Highcharts.setOptions({
 
 
 
-export default function createChart() {
-  var chart = Highcharts.chart('container', {
+export default function createAreaChart() {
+  var chart = Highcharts.chart('AreaContainer', {
     chart: {
       type: 'area',
       zoomType: 'x'
@@ -76,7 +76,6 @@ export default function createChart() {
         width: 1
 
       }]
-
     },
     // subtitle: {
     //   text: 'Data input from a remote JSON file'
@@ -103,11 +102,72 @@ function validatePollingInput(): number {
 
 // We recreate instead of using chart update to make sure the loaded CSV
 // and such is completely gone.
-pollingCheckbox.onchange = pollingInput.onchange = createChart;
+pollingCheckbox.onchange = pollingInput.onchange = createAreaChart;
+
+
+
+
+
+
+
+export function createHistogramChart() {
+  var chart = Highcharts.chart('HistogramContainer', {
+    chart: {
+      type: 'column',
+      zoomType: 'x'
+    },
+    title: {
+      text: 'Daily Customers'
+    },
+    xAxis: {
+      title: {
+        text: 'Date'
+      },
+      type: 'datetime', 
+      
+    // Use the date format in the 
+    // labels property of the chart 
+    labels: { 
+      formatter: function() { 
+        return Highcharts.dateFormat('%A<br>%b %e ', 
+                                      this.value); 
+      } 
+    } 
+    },
+    yAxis: {
+      title: {
+        text: 'Total Customers'
+      },
+    },
+    // subtitle: {
+    //   text: 'Data input from a remote JSON file'
+    // },
+    legend: {
+      enabled: false
+    },
+    data: {
+      rowsURL: lastWeekEntranceJsonStringUrl,
+      firstRowAsNames: false,
+      enablePolling: pollingCheckbox.checked === true,
+      dataRefreshRate: validatePollingInput()
+    },
+    tooltip: {
+      headerFormat: '{point.x:%A, %b %e, %Y} <br>',
+      pointFormat: '<b>{point.y}</b> people entered',
+      shared: true
+  },
+
+  });
+
+}
+
+let lastWeekEntranceJsonStringUrl: string = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekEntranceToJson";
+
+
 
 // Create the chart
-createChart();
-
+createAreaChart();
+createHistogramChart();
 
 
 // Graphs buttons
@@ -125,10 +185,10 @@ let GetLastWeekToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.get
 let GetTodayToJsonButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("GetTodayToJsonButton");
 
 
-GetAllToJsonButton.addEventListener("click", function () { jsonGraphUrl = allJsonStringUrl; createChart(); });
-GetLastMonthToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastMonthJsonStringUrl; createChart(); });
-GetLastWeekToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastWeekJsonStringUrl; createChart(); });
-GetTodayToJsonButton.addEventListener("click", function () { jsonGraphUrl = todayJsonStringUrl; createChart(); });
+GetAllToJsonButton.addEventListener("click", function () { jsonGraphUrl = allJsonStringUrl; createAreaChart(); });
+GetLastMonthToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastMonthJsonStringUrl; createAreaChart(); });
+GetLastWeekToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastWeekJsonStringUrl; createAreaChart(); });
+GetTodayToJsonButton.addEventListener("click", function () { jsonGraphUrl = todayJsonStringUrl; createAreaChart(); });
 
 var btns = document.getElementsByClassName("graphButtons");
 for (var i: any = 0; i < btns.length; i++) {

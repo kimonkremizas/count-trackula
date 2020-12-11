@@ -19,10 +19,9 @@
 }
 
 
-
 body {
     display: grid;
-    height: 100vh;
+    height: 120vh;
     grid-template-rows: repeat(10, 1fr);
     font-family: Tahoma, serif;
     color: rgb(37, 34, 34);
@@ -63,7 +62,7 @@ footer {
     text-align: center;
 }
 
-h1 {
+h1 {    
     text-align: center;
 }
 
@@ -118,18 +117,24 @@ h1 {
     grid-row: 1 / span 1;
 }
 
-// #homePage {
-// grid-row: 3 / span 7;
-// padding: 1rem;
-// padding-bottom: 300px;
-// text-align: center;
-// font-size: 100%;
-// display: grid;
-// grid-template-columns: repeat(12, 1fr);
-// grid-template-rows: repeat(2, 1fr);
-// }
+#homePage{
+    grid-column: 1 / span 14;
+}
 
-#graphsPage {
+#data {
+padding-left: 8rem;
+padding-right: 5rem;
+padding-bottom: 50px;
+text-align: center;
+font-size: 100%;
+display: grid;
+grid-column: 3 / span 8;
+grid-template-columns: repeat(3, 1fr);
+}
+
+#graphsPage {     
+    padding-right: 5rem;
+    padding-bottom: 50px;
     font-size: 300%;
     grid-column: 5 / span 6;
     grid-row: 1 / span 1;
@@ -159,6 +164,7 @@ h1 {
 
 /* Style the collapsible content. Note: hidden by default //Style the text and input */
 .content {
+    width: 445px;
     padding: 0px 18px;
     background-color: white;
     max-height: 0;
@@ -166,20 +172,20 @@ h1 {
     transition: max-height 0.5s ease-out;
 }
 label{
-    display: inline-block;
-  width: 180px;
+display: inline-block;  
   text-align: right;
   padding: 8px; 
   font-size: small;
 }
 input{
+    border-radius:5px;
     display: inline-block;
 }
 
 
 #collapsibleArea {
-    grid-column: 5 / span 6;
-    grid-row: 2 / span 1;
+    margin-right: 100px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 
@@ -336,12 +342,6 @@ input {
 	background-color:#ccc2a6;
 }
 
-// .deleteCookiesButtonOverlay:active {
-// 	position:relative;
-// 	top:1px;
-// }
-
-
 /* Tooltip container */
 .tooltip {
     position: relative;
@@ -368,26 +368,13 @@ input {
   }
 
   .fa-info-circle{
-    color: rgb(106, 106, 177);
+    color: rgb(117, 117, 134);
 }
   
   /* Show the tooltip text when you mouse over the tooltip container */
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
-
-
-// .tooltip .tooltiptext::after {
-//     content: " ";
-//     position: absolute;
-//     top: 50%;
-//     right: 100%; /* To the left of the tooltip */
-//     margin-top: -5px;
-//     border-width: 5px;
-//     border-style: solid;
-//     border-color: transparent black transparent transparent;
-//   }
-
 li{
     font-size: small;
     text-align: left;
@@ -438,13 +425,15 @@ li{
   //weather
 
 
-#weatherWidget{
+#weatherWidget{ 
+    margin-right: 40px; 
     background: rgb(240, 211, 194);
     opacity: 0.9;
     border-radius: 1rem;
     padding: 1rem;
-    width: 18vw;
+    width: 20vw;
     font-size: 0.7rem;
+    grid-template-columns: repeat(4, 1fr);
 }
 
   .forecast-row{

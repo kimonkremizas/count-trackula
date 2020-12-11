@@ -15,11 +15,11 @@ counter=0
 sense.clear()
 
 
-# sense.show_message("WAIT", text_colour=[255, 0, 0])
-# for i in reversed(range(0,10)):
-#    sense.show_letter(str(i))
-#    time.sleep(1)
-# sense.show_message("GO", text_colour=[255, 0, 0])
+sense.show_message("WAIT", text_colour=[255, 0, 0])
+for i in reversed(range(0,10)):
+    sense.show_letter(str(i))
+    time.sleep(1)
+sense.show_message("GO", text_colour=[255, 0, 0])
 o = sense.get_orientation()
 resting_yaw = round(o["yaw"],3)
 print("Resting yaw: {0}".format(resting_yaw))

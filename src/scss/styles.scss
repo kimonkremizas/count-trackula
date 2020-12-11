@@ -1,42 +1,3 @@
-/* This hides all pages */
-.page {
-    display: none;
-}
-
-/* This displays the first page */
-.default {
-    display: block;
-}
-
-/* This displays the page corresponding to the one you clicked on */
-:target {
-    display: block;
-}
-
-/* This hides the default page when another page is clicked */
-:target ~ .default {
-    display: none;
-}
-
-
-body {
-    display: grid;
-    height: 120vh;
-    grid-template-rows: repeat(10, 1fr);
-    font-family: Tahoma, serif;
-    color: rgb(37, 34, 34);
-    background: #3a7bd5;
-    /* fallback for old browsers */
-    //background: -webkit-linear-gradient(to right, #6dc7ac, #3a7bd5);
-    background: -webkit-linear-gradient(#81b1a5, #4d796e);
-    /* Chrome 10-25, Safari 5.1-6 */
-    //background: linear-gradient(to right, #81b1a5,  #4d796e);
-    background: radial-gradient(#81b1a5,  #4d796e);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-// etc
-
 header {
     grid-row: 1 / span 2;
     padding: 1rem;
@@ -55,23 +16,33 @@ main {
     grid-template-rows: repeat(2, 1fr);
 }
 
+// footer {
+//     grid-row: 11 / span 1;
+//     padding: 1rem;
+//     text-align: center;
+// }
 
-footer {
-    grid-row: 11 / span 1;
-    padding: 1rem;
-    text-align: center;
+body {
+    display: grid;
+    height: 120vh;
+    grid-template-rows: repeat(10, 1fr);
+    font-family: Tahoma, serif;
+    color: rgb(37, 34, 34);
+    background: #3a7bd5;
+    /* fallback for old browsers */
+    //background: -webkit-linear-gradient(to right, #6dc7ac, #3a7bd5);
+    background: -webkit-linear-gradient(#81b1a5, #4d796e);
+    /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to right, #81b1a5,  #4d796e);
+    background: radial-gradient(#81b1a5,  #4d796e);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 h1 {    
     text-align: center;
 }
 
-.OccupancyValue {
-    color: rgb(235, 126, 63);
-    text-shadow: 2px 2px 5px black;
-}
-
-
+// NAVIGATION BAR
 /* Style the navigation bar */
 .navbar {
     width: 100%;
@@ -111,12 +82,27 @@ h1 {
     }
 }
 
-#OccupancyArea {
-    font-size: 300%;
-    grid-column: 5 / span 4;
-    grid-row: 1 / span 1;
+/* This hides all pages */
+.page {
+    display: none;
 }
 
+/* This displays the first page */
+.default {
+    display: block;
+}
+
+/* This displays the page corresponding to the one you clicked on */
+:target {
+    display: block;
+}
+
+/* This hides the default page when another page is clicked */
+:target ~ .default {
+    display: none;
+}
+
+// HOME PAGE DESIGN
 #homePage{
     grid-column: 1 / span 14;
 }
@@ -132,6 +118,7 @@ grid-column: 3 / span 8;
 grid-template-columns: repeat(3, 1fr);
 }
 
+// GRAPH PAGE DESIGN
 #graphsPage {     
     padding-right: 5rem;
     padding-bottom: 50px;
@@ -140,6 +127,16 @@ grid-template-columns: repeat(3, 1fr);
     grid-row: 1 / span 1;
 }
 
+.OccupancyValue {
+    color: rgb(235, 126, 63);
+    text-shadow: 2px 2px 5px black;
+}
+
+#OccupancyArea {
+    font-size: 300%;
+    grid-column: 5 / span 4;
+    grid-row: 1 / span 1;
+}
 
 // COLLAPSIBLE
 /* Style the button that is used to open and close the collapsible content */
@@ -205,7 +202,6 @@ input{
     font-size: 15px;
 }
 
-
 input:invalid {
     border: 2px dashed red;
 }
@@ -248,7 +244,6 @@ input {
     /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer;
     /* Add a pointer on hover */
-
 }
 
 #text {
@@ -421,10 +416,7 @@ li{
   }
 
 
-  
-  //weather
-
-
+//  WEATHER
 #weatherWidget{ 
     margin-right: 40px; 
     background: rgb(240, 211, 194);
@@ -435,16 +427,13 @@ li{
     font-size: 0.7rem;
     grid-template-columns: repeat(4, 1fr);
 }
-
   .forecast-row{
     text-align: center;
     height: auto;
 }
-
   .forecastDays {
     display: inline-block;
 }
-
 
 .currentDay{
     padding:1rem
@@ -467,11 +456,6 @@ li{
     font-size: 1rem;
     font-weight: bold;
 }
-
-
-
 #weatherIcon{
     border: black 3px; // it's not working
-
 }
-

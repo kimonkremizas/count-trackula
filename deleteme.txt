@@ -1,0 +1,11 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 32B6-249F
+
+ Directory of C:\Source\Repos\count-trackula
+
+15/04/2021  12:33    <DIR>          .
+15/04/2021  12:33    <DIR>          ..
+15/04/2021  12:33                 0 deleteme.txt
+15/04/2021  11:44               342 README.md
+               2 File(s)            342 bytes
+               2 Dir(s)  27.629.834.240 bytes free

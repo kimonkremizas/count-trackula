@@ -38,9 +38,7 @@ REST API of CountTrackula that receives requests from CountTrackulaWebApp and Co
 
 Web App of CountTrackula that is already published at https://counttrackula.github.io/
 
-Remember to run command ```npm install``` before ```npm run watch``` so that all required libraries are installed.
-
-# Count Trackula web app
+Installation: run command ```npm install``` and then ```npm run watch``` so that all required libraries are installed.
 
 When the user visits the web page, he is introduced to the **Main Page**. In the Main Page the user is shown the "Occupancy", along with its corresponding value.   
 

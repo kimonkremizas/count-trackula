@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <div id='Title'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Count Trackula</title>
+    <link rel="stylesheet" type="text/css" href="bundle.css">
+
+    <link href="/home/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
+    <script type="text/typescript" src="/src/js/index.ts"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    </style>
+  </div>
+
+</head>
+
+<body>
+
+  <header>
+
+    <!-- Load an icon library -->
+    <script src="https://kit.fontawesome.com/3697d25e26.js" crossorigin="anonymous"></script>
+
+    <div class="navbar">
+      <a href="#homePage"><i class="fa fa-fw fa-home" id="homeButton"></i> Home</a>
+      <a href="#graphsPage"><i class="fas fa-chart-area" id="graphsButton"></i> Graphs</a>
+      <!-- <a href="index.htm"><i class="fas fa-cog"></i> Settings</a> -->
+    </div>
+    <h1>Count Trackula</h1>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+    </style>
+
+  </header>
+  <main>
+
+    <!-- GRAPHS PAGE -->
+    <div class="page" id="graphsPage">
+
+      <div id="AreaContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <div id="graphSettings" style="min-width: 310px;">
+        <div class="ld-row">
+          <label class="ld-label1">
+            Enable auto-refresh
+          </label>
+          <input type="checkbox" id="enablePolling" />
+        </div>
+        <div class="ld-row">
+          <label class="ld-label2">
+            Refresh Time (Seconds)
+          </label>
+          <input class="ld-time-input" type="number" value="2" id="pollingTime" />
+          <li>Hover to check specific values</li>
+          <li>Drag horizontally to Zoom</li>
+        </div id="graphButtonsDiv">
+        <button class="graphButtons" id="GetAllToJsonButton">All</button>
+        <button class="graphButtons" id="GetLastMonthToJsonButton">Month</button>
+        <button class="graphButtons" id="GetLastWeekToJsonButton">Week</button>
+        <button class="graphButtons active" id="GetTodayToJsonButton">Day</button>
+        </div>
+
+      <div id="HistogramContainer" style="min-width: 350px; max-width: 50rem; height: 400px; margin: 0 auto; padding-top: 25px;"></div>
+      </div>  
+     </div>
+
+
+
+    <!-- HOME PAGE -->
+    <div class="page default" id="homePage">
+
+
+      <div id="OccupancyArea">
+        <p>Current Occupancy</p>
+        <p id="Occupancy" class="OccupancyValue">Loading...</p>
+      </div>
+
+      <div id="data">
+        <div id="weatherWidget">
+          <div class="CurrentDay">
+            <div class="currentWeatherTimeAndCity">
+              <div id="city"><i>Copenhagen</i></div>
+              <!-- <div id="currentTime"></div> -->
+            </div>
+            <div id="currentWeather"></div>
+            <div id="currentTemp"></div>
+            <img id="currentWeatherIcon">
+          </div>
+          <div class="forecast-row">
+            <div class="forecastDays" id="Day1">
+              <div id="forecastDay1"></div>
+              <img id="forecastWeatherIconDay1">
+              <div id="forecastMaxTempDay1"></div>
+              <div id="forecastMinTempDay1"></div>
+            </div>
+            <div class="forecastDays" id="Day2">
+              <div id="forecastDay2"></div>
+              <img id="forecastWeatherIconDay2">
+              <div id="forecastMaxTempDay2"></div>
+              <div id="forecastMinTempDay2"></div>
+            </div>
+            <div class="forecastDays" id="Day3">
+              <div id="forecastDay3"></div>
+              <img id="forecastWeatherIconDay3">
+              <div id="forecastMaxTempDay3"></div>
+              <div id="forecastMinTempDay3"></div>
+            </div>
+            <div class="forecastDays" id="Day4">
+              <div id="forecastDay4"></div>
+              <img id="forecastWeatherIconDay4">
+              <div id="forecastMaxTempDay4"></div>
+              <div id="forecastMinTempDay4"></div>
+            </div>
+            <div class="forecastDays" id="Day5">
+              <div id="forecastDay5"></div>
+              <img id="forecastWeatherIconDay5">
+              <div id="forecastMaxTempDay5"></div>
+              <div id="forecastMinTempDay5"></div>
+            </div>
+            <div class="forecastDays" id="Day6">
+              <div id="forecastDay6"></div>
+              <img id="forecastWeatherIconDay6">
+              <div id="forecastMaxTempDay6"></div>
+              <div id="forecastMinTempDay6"></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="collapsibleArea">
+          <button class="collapsible"><b>Settings</b></button>
+
+          <div class="content">
+            <form>
+
+              <label for="maximumCustomersInput">Maximum Customers:</label>
+              <input type="number" id="maximumCustomersInput" name="maximumCustomersInput" min="1" required>
+              <div class="tooltip">
+                <i class="fas fa-info-circle"></i>
+                <span class="tooltiptext">Enter the maximum number of people allowed to be inside the store at any
+                  point</span>
+              </div>
+              <br>
+
+              <label for="warningRangeInput">Warning Range:</label>
+              <input type="number" id="warningRangeInput" name="warningRangeInput" min="0">
+              <div class="tooltip">
+                <i class="fas fa-info-circle"></i>
+                <span class="tooltiptext">This will display a warning when the Current Occupancy reaches the Maximum
+                  Occupancy minus this Warning Range (optional)</span>
+              </div>
+              <br>
+
+              <label for="emailInput">Email:</label>
+              <input type="email" id="emailInput" name="emailInput" required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              <div class="tooltip">
+                <i class="fas fa-info-circle"></i>
+                <span class="tooltiptext">Enter the email where you will be notified</span>
+              </div>
+              <br><br>
+
+              <!-- Cookies buttons -->
+              <input type="button" value="Clear Settings" class="deleteSettingsButtonOverlay"
+                id="deleteCookiesButtonSettings" />
+              <input type="submit" value="Save Settings" class="saveSettingsButtonOverlay" id="setCookieButton" />
+
+            </form>
+          </div>
+        </div>
+
+      
+      <!-- Overlay -->
+      <!-- <div style="padding:20px" hidden>
+        <h2>Overlay</h2>
+        <button id="overlayButton">Turn on overlay effect</button>
+      </div> -->
+
+      <div id="overlay">
+        <div id="text">CLOSE THE DOORS!!!</div>
+        <input type="button" value="Clear Settings" class="deleteCookiesButtonOverlay"
+          id="deleteCookiesButtonOverlay" />
+      </div>
+
+
+    </div>
+
+  </main>
+
+  <!-- <footer>Count Trackula team: Andrei, Ani, Josh, Kimon -->
+    <!-- <input type="button" value="Clear Form" id="clearTextBoxesButton" /> -->
+    <!-- <input type="button" value="Get Cookie" id="getCookieButton" /> -->
+    <!-- <input type="button" value="Send Email" id="sendEmailButton" /> -->
+
+  <!-- </footer> -->
+
+
+  <script src="bundle.js"></script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button class="collapsible">Settings</button>
+   <div class="grid-container">
+    <div class="grid-item">Maximum Customers:</div>
+    <div class="grid-item">
+      <input id="maximumCustomersInput" placeholder="Enter Maximum customers" required>
+      <p class="errors" id="maximumCustomersContent"></p>
+    </div>
+    <div class="grid-item">Warning Range:</div>  
+    <div class="grid-item">
+      <input id="warningRangeInput" placeholder="Enter the warning range" required>
+      <p class="errors" id="warningRangeContent"></p>
+    </div>
+    <div class="grid-item">Email:</div>
+    <div class="grid-item">
+      <input id="emailInput" placeholder="Enter email" required>
+      <p class="errors" id="emailContent"></p>
+    </div> 
+    <div class="grid-item"></div>
+    <div class="saveButton">
+      <input type="submit" id="saveSettingsButton"></button>
+      </div>
+   </div> -->
+
+
+
+
+<!--------------------------------------------------------------------------------------------->
+<!-- <button id="getAllButton"><b>Show all triggers</b></button>
+      <button id="clearGetAllListButton">Clear List</button>
+      <div id="getAllContent">
+        <ul id="carsContent">
+        </div>
+
+
+      <input id="getInput" placeholder="Enter count ID">
+      <br>
+      <button id="getButton"><b>Show specified trigger</b></button>
+      <div id="getContent">
+      </div> -->
+
+
+<!-- 
+    <br> <br>
+
+    <div class="side">
+      <input id="addVendorInput" placeholder="Enter trigger TimeStamp">
+      <br>
+      <input id="addModelInput" placeholder="Enter trigger CurrentCount">
+      <br>
+      <button id="addButton"><b>Add trigger</b></button>
+      <div id="postContent">
+      </div>
+    </div>
+
+    <br> <br>
+
+    <div class="side">
+      <input id="updateIdInput" placeholder="Enter trigger ID">
+      <br>
+      <input id="updateVendorInput" placeholder="Enter trigger TimeStamp">
+      <br>
+      <input id="updateModelInput" placeholder="Enter trigger CurrentCount">
+      <br>
+      <button id="updateButton"><b>Update trigger</b></button>
+      <div id="putContent">
+      </div>
+    </div>
+
+    <br> <br>
+
+    <div class="side">
+      <input id="deleteInput" placeholder="Enter trigger ID">
+      <br>
+      <button id="deleteButton"><b>Delete trigger</b></button>
+      <div id="deleteContent">
+      </div>
+    </div> -->
+
+
+
+
+
+<!-- 
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+
+<div class='static'>
+    <div id="container" style="width:700px; height:400px; margin: auto;"></div>
+  </div> -->

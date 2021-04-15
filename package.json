@@ -1,0 +1,40 @@
+{
+  "name": "webpacktypescriptscss",
+  "version": "1.0.0",
+  "description": "A starter template for webdevelopment",
+  "main": "index.js",
+  "scripts": {
+    "webpack:dev": "node_modules\\.bin\\webpack --mode=development",
+    "webpack:prod": "node_modules\\.bin\\webpack --mode=production",
+    "watch": "node_modules\\.bin\\webpack --mode=development --watch",
+    "serve": "node_modules\\.bin\\http-server dist/ -g -o"
+  },
+  "author": "Ebbe Vang, evang.dk",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/luxon": "^1.25.0",
+    "browser-sync": "^2.24.6",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "css-loader": "^1.0.0",
+    "extract-loader": "^2.0.1",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "source-map": "^0.7.3",
+    "style-loader": "^0.22.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "highcharts": "^8.2.2",
+    "luxon": "^1.25.0",
+    "process": "^0.11.10",
+    "url": "^0.11.0",
+    "util": "^0.12.3",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

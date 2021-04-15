@@ -29,3 +29,5 @@ As soon as the settings fields are filled, the user can press the *Save Settin
 The user can also navigate through the different pages of the app using the *navigation bar* on the top. By pressing the *Home button*, the user is returned to the Main Page and by pressing the *Graph button* the user is introduced to the Graph Page. 
 In the **Graph Page**, a representation of the occupancy through the time is displayed in an area graph and  the daily customers of the last week in a histogram. The data that are represented here are collected throughout all the days of use of the device, including the current day. The histogram is dynamic as the horizontal time axis range can be changed with the use of the buttons on the bottom of the page. The available options for time ranges of the Area graph are: Day, Week, Month and All.  
 
+# CountTrackulaClient
+Console app that is to be run on client PC in the same LAN as the Raspberry Pi with SenseHAT that run CountTrackulaUDPBroadcast.

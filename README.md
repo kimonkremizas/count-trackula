@@ -32,7 +32,9 @@ Here is an image of our a Raspberry Pi with SenseHAT on a physical prototype of 
 Console app that is to be run on client PC in the same LAN as the Raspberry Pi with SenseHAT that run CountTrackulaUDPBroadcast.
 
 # api
-REST API of CountTrackula that receives requests from CountTrackulaWebApp and CountTrackulaClient. Also published at Azure: https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking
+REST API of CountTrackula that receives requests from CountTrackulaWebApp and CountTrackulaClient. 
+
+Also published at Azure: https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking
 
 # web-app
 

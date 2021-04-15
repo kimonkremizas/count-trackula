@@ -3,6 +3,9 @@ Complete solution that helps store owners track the occupancy of their stores in
 
 Group project by me, Joshua James Lewis, Ani Vladislavova Boyadzhieva and Vlad-Andrei Gruia, part of our 3rd semester courses in Programming and Technology.
 
+Demo of the solution in action can be found in Youtube:
+[![Count Trackula Demo](http://img.youtube.com/vi/caeE7QmE4fs/0.jpg)](http://www.youtube.com/watch?v=caeE7QmE4fs "Count Trackula Demo")
+
 # sensors-broadcast-sender
 
 Example of Raspberry Pi with SenseHAT running the **broadcastEntranceCW.py** script (see below).

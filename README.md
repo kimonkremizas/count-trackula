@@ -3,7 +3,7 @@ Complete solution that helps store owners track the occupancy of their stores in
 
 The architecture of the solution can be seen on the image below:
 
-![Image of Count Trackula architecture](https://github.com/kkremizas/count-trackula/blob/master/Architecture.png)
+![Image of Count Trackula architecture](https://github.com/kkremizas/count-trackula/blob/main/CountTrackulaArchitecture.png)
 
 Group project by me, Joshua James Lewis, Ani Vladislavova Boyadzhieva and Vlad-Andrei Gruia, part of our 3rd semester courses in Programming and Technology.
 

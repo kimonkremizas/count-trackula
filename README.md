@@ -1,11 +1,13 @@
 # count-trackula
 Complete solution that helps store owners track the occupancy of their stores in real-time and also provides historical data for business analysis through graphs.
 
+Group project by me, Joshua James Lewis, Ani Vladislavova Boyadzhieva and Vlad-Andrei Gruia, part of our 3rd semester courses in Programming and Technology.
+
 The architecture of the solution can be seen on the image below:
 
 ![Image of Count Trackula architecture](https://github.com/kkremizas/count-trackula/blob/main/CountTrackulaArchitecture.png)
 
-Group project by me, Joshua James Lewis, Ani Vladislavova Boyadzhieva and Vlad-Andrei Gruia, part of our 3rd semester courses in Programming and Technology.
+Firstly, the data are collected by the Raspberry Pis using an add-on board called SenseHAT. When a door is opened, the accelerometer of the Sense HAT is triggered, and data are captured and broadcasted to LAN using UDP in Python. This broadcast message will be captured by a .NET Core Console Application (C#) running on a PC/Server on LAN and manipulated accordingly depending on which Raspberry Pi it is coming from (the one installed on the entrance or the exit door). This Console application will send data to a Microsoft SQL Server Database hosted on an Azure SQL Server, through a .NET Core RESTful WebAPI (C#) hosted as an Azure App Service, using HTTP methods (POST and GET). The Web Application will be implemented using Typescript, HTML and SCSS and request data from the Database through the WebAPI using Axios (HTTP GET). A JavaScript Library called Highcharts will be used in the Web Application to represent graphically the data as charts. A 3rd party API, named Open Weather, will be called inside the Web App using Axios (HTTP GET), displaying the data in a weather widget. The app user settings will be saved locally on the browser as cookies. Our WebAPI will use a 3rd party API, named Mailgun, that sends email notifications (HTTP POST) to the user notifying when the maximum allowed occupancy is reached. Lastly, the Web Application will be hosted as a GitHub Page, to ensure ease of use and security.
 
 Demo of the solution in action can be found in Youtube:
 

@@ -11,7 +11,7 @@ Firstly, the data are collected by the Raspberry Pis using an add-on board c
 
 Demo of the solution in action can be found in Youtube:
 
-[![Count Trackula Demo](http://img.youtube.com/vi/caeE7QmE4fs/0.jpg)](http://www.youtube.com/watch?v=caeE7QmE4fs "Count Trackula Demo")
+[![Count Trackula Demo](http://img.youtube.com/vi/pG7h5w99Fus/0.jpg)](https://youtu.be/pG7h5w99Fus "Count Trackula Demo")
 
 # sensors-broadcast-sender
 

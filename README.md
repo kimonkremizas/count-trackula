@@ -32,7 +32,7 @@ During first-time installation:
 
 Here is an image of our a Raspberry Pi with SenseHAT on a physical prototype of a door used for testing purposes.
 
-![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/sensors-broadcast-sender/blob/master/pidoor.jpg)
+![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/count-trackula/blob/main/pidoor.jpeg)
 
 # broadcast-receiver
 Console app that is to be run on client PC in the same LAN as the Raspberry Pi with SenseHAT that run CountTrackulaUDPBroadcast.

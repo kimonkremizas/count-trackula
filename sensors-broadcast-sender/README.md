@@ -2,7 +2,7 @@
 
 Example of Raspberry Pi with SenseHAT running the **broadcastEntranceCW.py** script (see below).
 
-![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/CountTrackulaUDPBroadcast/blob/master/CountTrackulaWorking.gif)
+![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/count-trackula/blob/main/CountTrackulaWorking.gif)
 
 
 During first-time installation:
@@ -17,4 +17,4 @@ During first-time installation:
 
 Here is an image of our a Raspberry Pi with SenseHAT on a physical prototype of a door used for testing purposes.
 
-![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/CountTrackulaUDPBroadcast/blob/master/pidoor.jpg)
+![Image of Raspberry Pi with SenseHAT on TestDoor](https://github.com/kkremizas/count-trackula/blob/main/pidoor.jpeg)
